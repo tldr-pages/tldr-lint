@@ -14,8 +14,8 @@ cli.process = function() {
     var page = fs.readFileSync(file, 'utf8');
     var errors = tldrLint(page);
     errors.forEach(function(error) {
-      console.error(file + ':' + error.locinfo.first_line + 
-                    ': ' + error.description)
+      console.error(file + ':' + error.locinfo.first_line + ': ' + 
+                    error.code + ' ' + error.description)
     });
   });
 };

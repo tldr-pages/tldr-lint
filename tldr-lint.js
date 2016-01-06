@@ -11,10 +11,14 @@ DEBUG_MODE = true;
       examples: []
     };
   };
+  parser.ERRORS = parser.yy.ERRORS = {
+    'TLDR001': 'Missing space before title.'
+  }
   parser.yy.error = function(location, error) {
     parser.yy.errors.push({
       locinfo: location,
-      description: error
+      code: error,
+      description: parser.ERRORS[error]
     });
   };
   parser.yy.setTitle = function(title) {
