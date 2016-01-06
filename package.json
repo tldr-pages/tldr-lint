@@ -1,0 +1,20 @@
+{
+  "name": "tldr-lint",
+  "version": "1.0.0",
+  "description": "Linter for TLDR pages.",
+  "main": "index.js",
+  "scripts": {
+    "jison": "jison tldr.yy tldr.l -o tldr-lint.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "tldr",
+    "pages",
+    "lint"
+  ],
+  "author": "Ruben Vereecken",
+  "license": "MIT",
+  "dependencies": {
+    "jison": "^0.4.15"
+  }
+}
