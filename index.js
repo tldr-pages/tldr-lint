@@ -3,10 +3,8 @@ var fs = require('fs')
 var path = require('path')
 
 var cli = module.exports;
-cli.processInputFile
 cli.process = function() {
   var args = process.argv.slice(2);
-  console.log(args);
   args.forEach(function(file) {
     var stats = fs.statSync(file);
     if (stats.isDirectory()) {
@@ -14,11 +12,11 @@ cli.process = function() {
       process.exit(1);
     }
     var page = fs.readFileSync(file, 'utf8');
-    console.log(page);
-    var results = tldrLint(page);
-    if (results.error) {
-      process.exit(1);
-    }
+    var errors = tldrLint(page);
+    errors.forEach(function(error) {
+      console.error(file + ':' + error.locinfo.first_line + 
+                    ': ' + error.description)
+    });
   });
 };
 

@@ -8,13 +8,19 @@
 
 %%
 
-page    : title NEWLINE description examples EOF
+page    : title NEWLINE descriptions examples EOF
         ;
 
-title   : HASH SPACE TEXT NEWLINE
+title   : HASH TEXT NEWLINE -> yy.error(@$, 'Missing space before title.') 
+        | HASH SPACE TEXT NEWLINE 
         ;
 
-description : GREATER SPACE sentence NEWLINE
+
+descriptions : description descriptions 
+             | %empty
+             ;
+             
+description : GREATER SPACE sentence NEWLINE -> yy.addDescription($sentence)
             ;
 
 // Added in %prec to make sure TEXT doesn't eat PERIOD. Only works for simple sentences.
@@ -25,11 +31,12 @@ examples    : example examples
             | %empty
             ;
 
-example     : NEWLINE example_description NEWLINE command NEWLINE
+example     : NEWLINE example_description NEWLINE command NEWLINE 
+              -> yy.addExample($example_description, $command)
             ;
 
 example_description : DASH SPACE sentence NEWLINE
                     ;
 
-command     : BACKTICK TEXT %prec BACKTICK 
+command     : BACKTICK TEXT %prec BACKTICK -> $TEXT
             ;
