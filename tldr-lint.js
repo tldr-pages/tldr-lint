@@ -1,7 +1,7 @@
-parser = require('tldr-parser.js').parser
+parser = require('./tldr-parser').parser
 
 module.exports = function(page) {
-  var result = parser.parse(input);
+  var result = parser.parse(page);
   console.log(result);
   return result;
 };

@@ -4,7 +4,7 @@
 
 capital [A-Z]
 alpha   [A-Za-z]
-text    .*
+newline \n
 
 %%
 
@@ -14,11 +14,11 @@ text    .*
 "-"   return 'DASH';
 "{"   return 'LBRACE';
 "}"   return 'RBRACE';
-"\n"  return 'NEWLINE';
+{newline}  return 'NEWLINE';
 "."   return 'PERIOD';
 "`"   return 'BACKTICK';
 {capital}   return 'CAPITAL';
-{text}  return 'TEXT';
-
 <<EOF>>   return 'EOF';
+
+.*  return 'TEXT';
 

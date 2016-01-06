@@ -8,27 +8,28 @@
 
 %%
 
-page    : title NEWLINE description examples
+page    : title NEWLINE description examples EOF
         ;
-
-sentence    : CAPITAL TEXT PERIOD
-            ;
 
 title   : HASH SPACE TEXT NEWLINE
         ;
 
-description : GREATER SPACE sentence NEWLINE NEWLINE
+description : GREATER SPACE sentence NEWLINE
+            ;
+
+// Added in %prec to make sure TEXT doesn't eat PERIOD. Only works for simple sentences.
+sentence    : CAPITAL TEXT %prec PERIOD
             ;
 
 examples    : example examples
             | %empty
             ;
 
-example     : NEWLINE example_description NEWLINE command
+example     : NEWLINE example_description NEWLINE command NEWLINE
             ;
 
 example_description : DASH SPACE sentence NEWLINE
                     ;
 
-command     : BACKTICK TEXT BACKTICK NEWLINE
+command     : BACKTICK TEXT %prec BACKTICK 
             ;
