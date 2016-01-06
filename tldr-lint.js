@@ -2,6 +2,10 @@ parser = require('./tldr-parser').parser;
 
 DEBUG_MODE = true;
 
+parser.ERRORS = {
+  'TLDR001': 'Missing space before title.'
+};
+
 (function(parser) {
   // Prepares state for a single page. Should be called before a run.
   parser.init = function() {
@@ -12,9 +16,13 @@ DEBUG_MODE = true;
     };
   };
   parser.yy.error = function(location, error) {
+    if (!parser.ERRORS[error]) {
+      throw new Error("Linter done goofed. '" + error + "' does not exist.");
+    }
     parser.yy.errors.push({
       locinfo: location,
-      description: error
+      code: error,
+      description: parser.ERRORS[error]
     });
   };
   parser.yy.setTitle = function(title) {

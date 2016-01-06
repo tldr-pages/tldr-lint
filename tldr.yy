@@ -11,7 +11,7 @@
 page    : title NEWLINE descriptions examples EOF
         ;
 
-title   : HASH TEXT NEWLINE -> yy.error(@$, 'Missing space before title.') 
+title   : HASH TEXT NEWLINE -> yy.error(@$, 'TLDR001') 
         | HASH SPACE TEXT NEWLINE 
         ;
 
