@@ -2,6 +2,10 @@
   "name": "tldr-lint",
   "version": "0.0.1",
   "description": "Linter for TLDR pages.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rubenvereecken/tldr-lint.git"
+  },
   "scripts": {
     "jison": "grunt exec:jison",
     "test": "grunt test"
@@ -16,7 +20,10 @@
     "lint",
     "format"
   ],
-  "author": "Ruben Vereecken",
+  "author": {
+    "name": "Ruben Vereecken",
+    "email": "rubenvereecken@gmail.com"
+  },
   "license": "MIT",
   "dependencies": {
     "commander": "^2.9.0"
