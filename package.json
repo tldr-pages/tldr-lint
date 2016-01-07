@@ -18,6 +18,7 @@
   "author": "Ruben Vereecken",
   "license": "MIT",
   "dependencies": {
+    "commander": "^2.9.0",
     "jison": "^0.4.15"
   },
   "devDependencies": {
