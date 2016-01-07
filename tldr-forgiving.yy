@@ -22,10 +22,18 @@ descriptions : description descriptions
              ;
              
 description : GREATER WHITESPACE sentence -> yy.addDescription($sentence)
+            | GREATER sentence            -> yy.addDescription($sentence)
+            | WHITESPACE sentence         -> yy.addDescription($sentence)
+            | sentence                    -> yy.addDescription($sentence)
             ;
 
 // Added in %prec to make sure TEXT doesn't eat PERIOD. Only works for simple sentences.
 sentence    : SENTENCE eos  -> $SENTENCE
+            | SENTENCE BACKTICK eos -> $SENTENCE + $BACKTICK
+            ;
+
+whitespace  : WHITESPACE
+            | % empty
             ;
 
 eos     : NEWLINE
@@ -36,12 +44,17 @@ examples    : example examples
             | %empty
             ;
 
-example     : example_description command
-              -> yy.addExample($example_description, $command)
+example     : example_description commands
+              -> yy.addExample($example_description, $commands)
             ;
 
-example_description : DASH WHITESPACE sentence -> $sentence
+example_description : DASH WHITESPACE sentence  -> $sentence
+                    | DASH sentence             -> $sentence
                     ;
+
+commands    : command commands  -> [].concat([$command], $commands)
+            | command           -> [$command]
+            ;
 
 command     : BACKTICK command_inner BACKTICK NEWLINE -> $command_inner
             ;
