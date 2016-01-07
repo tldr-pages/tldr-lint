@@ -1,25 +1,25 @@
 {
   "name": "tldr-lint",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Linter for TLDR pages.",
-  "main": "index.js",
   "scripts": {
     "jison": "grunt exec:jison",
     "test": "grunt test"
   },
   "bin": {
-    "tldr-lint": "lib/cli.js"
+    "tldr-lint": "lib/tldr-lint-cli.js",
+    "tldr-format": "lib/tldr-format-cli.js"
   },
   "keywords": [
     "tldr",
     "pages",
-    "lint"
+    "lint",
+    "format"
   ],
   "author": "Ruben Vereecken",
   "license": "MIT",
   "dependencies": {
-    "commander": "^2.9.0",
-    "jison": "^0.4.15"
+    "commander": "^2.9.0"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
@@ -28,6 +28,7 @@
     "grunt-exec": "^0.4.6",
     "grunt-jasmine-nodejs": "^1.4.3",
     "jasmine-core": "^2.4.1",
-    "jasmine-node": "^1.14.5"
+    "jasmine-node": "^1.14.5",
+    "jison": "^0.4.15"
   }
 }
