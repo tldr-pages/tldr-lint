@@ -1,4 +1,5 @@
 %token WORD
+%token SPECIAL
 %token SENTENCE
 %token HASH GREATER DASH PERIOD
 %token LBRACE RBRACE
@@ -11,6 +12,8 @@
 %%
 
 page    : title descriptions examples EOF
+        // Whoever starts files with newlines
+        | NEWLINE title descriptions examples EOF
         ;
 
 title   : HASH sentence             -> yy.setTitle($sentence)
@@ -60,7 +63,16 @@ command     : BACKTICK command_inner BACKTICK NEWLINE -> $command_inner
             ;
 
 command_inner   : SENTENCE
+                | SENTENCE special            -> $SENTENCE + $special
+                | SENTENCE WHITESPACE special -> $SENTENCE + $WHITESPACE + $special
                 ;
+
+special : PERIOD          -> $PERIOD
+        | PERIOD special  -> $PERIOD + $special
+        | DASH            -> $DASH
+        | DASH special    -> $DASH + $special
+        ;
+
 
 /* command_inner : SENTENCE command_inner */
 /*               | command_token command_inner */
