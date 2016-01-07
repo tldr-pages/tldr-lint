@@ -3,7 +3,7 @@ module.exports = (grunt) ->
     pkg: grunt.file.readJSON 'package.json'
 
     clean:
-      jison: ["tldr-parser.js"]
+      jison: ["lib/tldr-parser.js", "lib/tldr-forgiving-parser.js"]
 
     jasmine_nodejs:
       options:
@@ -27,7 +27,8 @@ module.exports = (grunt) ->
         ]
 
     exec:
-      jison: 'jison tldr.yy tldr.l -o lib/tldr-parser.js'
+      jison: 'jison tldr.yy tldr.l -o lib/tldr-parser.js' +
+             '| jison tldr-forgiving.yy tldr-forgiving.l -o lib/tldr-forgiving-parser.js'
 
     watch:
       jison:
