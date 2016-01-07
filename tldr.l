@@ -2,7 +2,6 @@
 
 %}
 
-capital [A-Z]
 alpha   [A-Za-z]
 newline \n
 
@@ -14,10 +13,9 @@ newline \n
 "-"   return 'DASH';
 "{"   return 'LBRACE';
 "}"   return 'RBRACE';
-{newline}  return 'NEWLINE';
 "."   return 'PERIOD';
 "`"   return 'BACKTICK';
-{capital}   return 'CAPITAL';
+{newline}  return 'NEWLINE';
 <<EOF>>   return 'EOF';
 
 .*  return 'TEXT';
