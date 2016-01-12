@@ -4,8 +4,8 @@
 
 %{
   yy.initLexer(yy.lexer);
-  /* num_descriptions = 0; */
-  /* num_example_commands = 0; */ 
+  console.error = function() {};
+  console.log = function() {};
 %}
 
 %%
@@ -44,6 +44,7 @@
     this.pushState('description');
     return 'GREATER_THAN';
   } else {
+    console.log('entering EXAMPLE DESCRIPTION');
     this.pushState('example_description');
     return 'DASH';
   }
@@ -77,7 +78,6 @@
   if (this.topState() === 'description') {
     console.log('DESCRIPTION LINE')
     this.popState();
-    num_descriptions += 1
     return 'DESCRIPTION_LINE';
   } else {
     this.reject();
@@ -85,32 +85,18 @@
 %}
 
 
-([\w\+_\(\) \.,\{\};-]+?)(\.?)\n
+([\w\+_\(\) \.,\{\};-]+?)([\.:]?)\n
 %{
   console.log('EXAMPLE DESCRIPTION')
   if (this.topState() === 'example_description') {
-    console.log(this.matches);
     this.popState();
-    num_example_commands = 0;
     return 'EXAMPLE_DESCRIPTION'
   } else {
     this.reject();
   }
 %}
 
-(.*?(?:\{\{(.*)\}\})*)*
-%{
-  if (this.topState() === 'example_command') {
-    console.log(this.matches);
-    return 'EXAMPLE_COMMAND';
-  } else {
-    this.reject();
-  }
-%}
-
-
-
-`\n
+\`\n
 %{
   if (this.topState() === 'example_command') {
     this.popState();
@@ -120,10 +106,36 @@
   }
 %}
 
-`
+\`
 %{
   this.pushState('example_command');
+  console.log('OPENING BACKTICK');
   return 'BACKTICK';
+%}
+
+\{\{([^\n\`\{\}]*)\}\}
+%{
+  if (this.topState() === 'example_command') {
+    return 'EXAMPLE_COMMAND_TOKEN';
+  } else this.reject();
+%}
+
+// Example commands text either runs up to two left braces (signaling a token)
+// Or up to a backtick, which means that's it for the command.
+([^\`\n]+?)\{\{
+%{
+  if (this.topState() === 'example_command') {
+    this.unput('{{');
+    return 'EXAMPLE_COMMAND_TEXT';
+  } else this.reject();
+%}
+
+([^\`\n]+?)\`
+%{
+  if (this.topState() === 'example_command') {
+    this.unput('`');
+    return 'EXAMPLE_COMMAND_TEXT';
+  } else this.reject();
 %}
 
 (\n)+
@@ -133,6 +145,3 @@
   }  
   return 'NEWLINE';
 %}
-// TODO num_example_commands incrementen zo kan ik errors geven bij rare
-// newlines enzo Laat toch de grammatica de rest van het groffe werk doen hier
-// is al te veel gehack

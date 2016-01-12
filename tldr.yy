@@ -1,8 +1,7 @@
-%token HASH SPACE GREATER_THAN DASH PERIOD
-%token LBRACE RBRACE
+%token HASH GREATER_THAN DASH
 %token BACKTICK
-%token CAPITAL TEXT
 %token NEWLINE
+%token EXAMPLE_COMMAND_TOKEN EXAMPLE_COMMAND_TEXT
 
 %start page
 
@@ -32,8 +31,13 @@ example_commands    : example_command
                     | example_commands example_command
                     ;
 
-example_command     : BACKTICK EXAMPLE_COMMAND BACKTICK
+example_command     : BACKTICK example_command_inner BACKTICK
                     ;
+
+example_command_inner : %empty
+                      | example_command_inner EXAMPLE_COMMAND_TEXT
+                      | example_command_inner EXAMPLE_COMMAND_TOKEN
+                      ;
 
 /* page    : title NEWLINE descriptions examples EOF */
 /*         ; */
