@@ -1,7 +1,6 @@
 %options backtrack_lexer
 %lex
 
-
 %{
   yy.initLexer(yy.lexer);
 %}
@@ -28,7 +27,7 @@
 %{
   this.pushState('title');
   if (this.matches[1]) {
-    console.error('no whitespace before title');
+    yy.error(yylloc, 'TLDR001');
   }
   if (yylloc.first_line !== 1) {
     console.error('title should be at start of file')
