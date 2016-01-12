@@ -29,27 +29,23 @@
   if (this.matches[1]) {
     yy.error(yylloc, 'TLDR001');
   }
-  if (yylloc.first_line !== 1) {
-    console.error('title should be at start of file')
-  }
+  if (this.matches[2] !== ' ') {
+    yy.error(yylloc, 'TLDR002')
+  } 
   return 'HASH'; 
 %}
 
 ([\>-])(\s*)
 %{
+  if (this.matches[2] !== ' ') {
+    yy.error(yylloc, 'TLDR002')
+  } 
   if (this.matches[1] == '>') {
     this.pushState('description');
     return 'GREATER_THAN';
   } else {
     this.pushState('example_description');
     return 'DASH';
-  }
-  if (!this.matches[2]) {
-    console.error('Should be single space');
-  } else if (this.matches[2].length > 1) {
-    console.error('Just a single space man');
-  } else if (this.matches[2] !== ' ') {
-    console.error('Thats not even a space');
   }
 %}
 
