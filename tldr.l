@@ -4,8 +4,6 @@
 
 %{
   yy.initLexer(yy.lexer);
-  console.error = function() {};
-  console.log = function() {};
 %}
 
 %%
@@ -44,7 +42,6 @@
     this.pushState('description');
     return 'GREATER_THAN';
   } else {
-    console.log('entering EXAMPLE DESCRIPTION');
     this.pushState('example_description');
     return 'DASH';
   }
@@ -59,7 +56,6 @@
 
 ([a-z0-9-]+)(\.?)\n 
 %{
-  console.log("TITLE");
   if (this.topState() === "title") {
     var title = this.matches[1];
     yy.setTitle(title);
@@ -76,7 +72,6 @@
 ([\w\+_\(\)\.,; -]+?)([\.,]?)\n
 %{
   if (this.topState() === 'description') {
-    console.log('DESCRIPTION LINE')
     this.popState();
     return 'DESCRIPTION_LINE';
   } else {
@@ -87,7 +82,6 @@
 
 ([\w\+_\(\) \.,\{\};-]+?)([\.:]?)\n
 %{
-  console.log('EXAMPLE DESCRIPTION')
   if (this.topState() === 'example_description') {
     this.popState();
     return 'EXAMPLE_DESCRIPTION'
@@ -109,14 +103,13 @@
 \`
 %{
   this.pushState('example_command');
-  console.log('OPENING BACKTICK');
   return 'BACKTICK';
 %}
 
 \{\{([^\n\`\{\}]*)\}\}
 %{
   if (this.topState() === 'example_command') {
-    return 'EXAMPLE_COMMAND_TOKEN';
+    return 'COMMAND_TOKEN';
   } else this.reject();
 %}
 
@@ -126,7 +119,7 @@
 %{
   if (this.topState() === 'example_command') {
     this.unput('{{');
-    return 'EXAMPLE_COMMAND_TEXT';
+    return 'COMMAND_TEXT';
   } else this.reject();
 %}
 
@@ -134,7 +127,7 @@
 %{
   if (this.topState() === 'example_command') {
     this.unput('`');
-    return 'EXAMPLE_COMMAND_TEXT';
+    return 'COMMAND_TEXT';
   } else this.reject();
 %}
 

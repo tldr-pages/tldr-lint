@@ -1,6 +1,7 @@
-%token HASH GREATER_THAN DASH
-%token BACKTICK
+%token HASH GREATER_THAN DASH BACKTICK
 %token NEWLINE
+%token DESCRIPTION_LINE
+%token EXAMPLE_DESCRIPTION
 %token COMMAND_TOKEN COMMAND_TEXT
 
 %start page
@@ -13,7 +14,7 @@ page      : title NEWLINE description examples
 title     : HASH TITLE  -> yy.setTitle($TITLE) 
           ;
 
-description   : GREATER_THAN DESCRIPTION_LINE -> yy.addDescription($DESCRPTION_LINE)
+description   : GREATER_THAN DESCRIPTION_LINE -> yy.addDescription($DESCRIPTION_LINE)
               | description GREATER_THAN DESCRIPTION_LINE
               ;
 
