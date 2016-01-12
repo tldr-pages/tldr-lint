@@ -1,53 +1,116 @@
-// Important note: default behavior is NOT exhaustive search like flex.
-// Behavior can be changed using lexer.option.flex
-// lex apparently behaves differently
+%options backtrack_lexer
 %lex
+
 
 %{
   yy.initLexer(yy.lexer);
+  num_descriptions = 0;
+  num_example_commands = 0; 
 %}
-
-alpha   [A-Za-z]
-newline \n
 
 %%
 
-// I think a lot can be simplified using lexer condition states.
+\s+<<EOF>>
+%{
+  console.error('trailing whitespace');
+%}
 
-\s+ %{
-      if (yylloc.first_line === 1) {
-        console.error('error, leading spaces');
-      } else {
-        console.log('whitespace', this.matches);
-        this.unput(this.matches[0]);
-      }
+(\s*)([\#\>-])(\s*)
+%{
+  /* console.log(this.matches); */
+  if (this.matches[2] === '#') {
+    this.pushState('title');
+    if (this.matches[1]) {
+      console.error('leading whitespace');
+    }
+    if (yylloc.first_line !== 1) {
+      console.error('title should be at start of file')
+    }
+    return 'HASH'; 
+  }
+  if (num_descriptions >= 1) {
+    if (this.matches[1]) {
+      console.error('No newlines in top description');
+    }
+  } else if (!this.matches[1]) {
+    console.error('There should be extra newlines between every line');
+  } else if (this.matches[1].indexOf('\n') === -1) {
+    console.error('There should be extra newlines between every line');
+  } else if (this.matches[1].length > 1) {
+    console.error('Just a single newline will suffice');
+  }
+  if (this.matches[2] == '>') {
+    this.pushState('description');
+    return 'GREATER_THAN';
+  } else {
+    this.pushState('example_description');
+    return 'DASH';
+  }
+  if (!this.matches[3]) {
+    console.error('Should be single space');
+  } else if (this.matches[3].length > 1) {
+    console.error('Just a single space man');
+  } else if (this.matches[3] !== ' ') {
+    console.error('Thats not even a space');
+  }
+%}
 
-    %}
+([a-z0-9-]+)(\.?)\n 
+%{
+  console.log("TITLE");
+  if (this.topState() === "title") {
+    var title = this.matches[1];
+    yy.setTitle(title);
+    if (this.matches[2] == '.') {
+      console.error('nowp no period there');
+    }
+    this.popState();
+    return 'TITLE';
+  } else {
+    this.reject();
+  }
+%}
 
-"# ?" %{
-      console.log(yylloc);
-      console.log(this.matches);
-      if (yylloc.first_column === 0) {
-        console.log('leading hash');
-        var condition = {
-          ctx: 'title',
-          rules: this._currentRules()
-        };
-        this.pushState(condition.ctx, condition);
-        return 'HASH';
-      } else {  // Just ignore a hash that's not at start of a line
-        this.less(1);
-      }
-    %}
-" " return 'SPACE';
-">"   return 'GREATER';
-"-"   return 'DASH';
-"{"   return 'LBRACE';
-"}"   return 'RBRACE';
-"."   return 'PERIOD';
-"`"   return 'BACKTICK';
-\n  return 'NEWLINE';
-<<EOF>>   return 'EOF';
+([\w\+_\(\)\.,; -]+?)([\.,]?)\n
+%{
+  if (this.topState() === 'description') {
+    console.log('DESCRIPTION LINE')
+    this.popState();
+    num_descriptions += 1
+    return 'DESCRIPTION_LINE';
+  } else {
+    this.reject();
+  }
+%}
 
-/* .*  return 'TEXT'; */
 
+([\w\+_\(\) \.,\{\};-]+?)(\.?)\n
+%{
+  console.log('EXAMPLE DESCRIPTION')
+  if (this.topState() === 'example_description') {
+    console.log(this.matches);
+    this.popState();
+    num_example_commands = 0;
+    return 'EXAMPLE_DESCRIPTION'
+  } else {
+    this.reject();
+  }
+%}
+
+`\n
+%{
+  if (this.topState() === 'example_command') {
+    return 'BACKTICK'
+  } else {
+    this.reject();
+  }
+%}
+
+(\s*)`(\s*)
+%{
+  blabla open backtick
+%}
+
+// TODO num_example_commands incrementen zo kan ik errors geven bij rare
+// newlines enzo Laat toch de grammatica de rest van het groffe werk doen hier
+// is al te veel gehack

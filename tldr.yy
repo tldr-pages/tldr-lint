@@ -1,4 +1,4 @@
-%token HASH SPACE GREATER DASH PERIOD
+%token HASH SPACE GREATER_THAN DASH PERIOD
 %token LBRACE RBRACE
 %token BACKTICK
 %token CAPITAL TEXT
@@ -8,11 +8,26 @@
 
 %%
 
-page      : title
+page      : title description examples
           ;
 
-title     : HASH
+title     : HASH TITLE
           ;
+
+description   : GREATER_THAN DESCRIPTION_LINE
+              | description GREATER_THAN DESCRIPTION_LINE
+              ;
+
+examples  : %empty
+          | examples example_description example_commands
+          ;
+
+example_description : DASH EXAMPLE_DESCRIPTION
+                    ;
+
+example_commands    : EXAMPLE_COMMAND
+                    | example_commands EXAMPLE_COMMAND
+                    ;
 
 /* page    : title NEWLINE descriptions examples EOF */
 /*         ; */
@@ -26,7 +41,7 @@ title     : HASH
 /*              | %empty */
 /*              ; */
              
-/* description : GREATER SPACE sentence NEWLINE -> yy.addDescription($sentence) */
+/* description : GREATER_THAN SPACE sentence NEWLINE -> yy.addDescription($sentence) */
 /*             ; */
 
 /* // Added in %prec to make sure TEXT doesn't eat PERIOD. Only works for simple sentences. */
