@@ -38,4 +38,3 @@ containsOnlyErrors = function(errors, expected) {
   });
   return true;
 };
-

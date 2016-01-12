@@ -77,12 +77,13 @@
 %}
 
 
-([\w\+_\(\) \.,\{\};-]+?)([\.:]?)\n
+([\w\+_\(\) \.,\{\};-]+?)(.?)\n
 %{
   if (this.topState() === 'example_description') {
     this.popState();
     yytext = this.matches[1];
-    if (!yytext.match(/^[A-Z]/)) yy.error(yylloc, 'TLDR003')
+    if (!yytext.match(/^[A-Z]/)) yy.error(yylloc, 'TLDR003');
+    if (this.matches[2] !== ':') yy.error(yylloc, 'TLDR005');
     return 'EXAMPLE_DESCRIPTION'
   } else {
     this.reject();
