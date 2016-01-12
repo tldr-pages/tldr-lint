@@ -57,8 +57,7 @@
 ([a-z0-9-]+)(\.?)\n 
 %{
   if (this.topState() === "title") {
-    var title = this.matches[1];
-    yy.setTitle(title);
+    yytext = this.matches[1];
     if (this.matches[2] == '.') {
       console.error('nowp no period there');
     }
@@ -69,10 +68,11 @@
   }
 %}
 
-([\w\+_\(\)\.,; -]+?)([\.,]?)\n
+([\w\+_\(\)\.,; -]+?)([\.]?)\n
 %{
   if (this.topState() === 'description') {
     this.popState();
+    yytext = this.matches[1];
     return 'DESCRIPTION_LINE';
   } else {
     this.reject();
@@ -84,6 +84,7 @@
 %{
   if (this.topState() === 'example_description') {
     this.popState();
+    yytext = this.matches[1];
     return 'EXAMPLE_DESCRIPTION'
   } else {
     this.reject();
@@ -109,6 +110,7 @@
 \{\{([^\n\`\{\}]*)\}\}
 %{
   if (this.topState() === 'example_command') {
+    yytext = this.matches[1];
     return 'COMMAND_TOKEN';
   } else this.reject();
 %}
@@ -119,6 +121,7 @@
 %{
   if (this.topState() === 'example_command') {
     this.unput('{{');
+    yytext = this.matches[1];
     return 'COMMAND_TEXT';
   } else this.reject();
 %}
@@ -127,6 +130,7 @@
 %{
   if (this.topState() === 'example_command') {
     this.unput('`');
+    yytext = this.matches[1];
     return 'COMMAND_TEXT';
   } else this.reject();
 %}

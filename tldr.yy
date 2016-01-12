@@ -29,7 +29,7 @@ example   : NEWLINE example_description NEWLINE example_commands
 example_description : DASH EXAMPLE_DESCRIPTION  -> $EXAMPLE_DESCRIPTION
                     ;
 
-example_commands    : example_command
+example_commands    : example_command   -> [$example_command]
                     | example_commands example_command
                       -> [].concat($example_commands, [$example_command])
                     ;
@@ -37,11 +37,11 @@ example_commands    : example_command
 example_command     : BACKTICK example_command_inner BACKTICK -> $example_command_inner
                     ;
 
-example_command_inner : %empty
+example_command_inner : -> []
                       | example_command_inner COMMAND_TEXT
-                        -> [].concat($example_command_inner, [yy.createCommandText($COMMAND_TEXT)])
+                        -> [].concat($example_command_inner, yy.createCommandText($COMMAND_TEXT))
                       | example_command_inner COMMAND_TOKEN
-                        -> [].concat($example_command_inner, [yy.createToken($COMMAND_TOKEN)])
+                        -> [].concat($example_command_inner, yy.createToken($COMMAND_TOKEN))
                       ;
 
 /* page    : title NEWLINE descriptions examples EOF */
