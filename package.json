@@ -12,7 +12,7 @@
   },
   "bin": {
     "tldr-lint": "lib/tldr-lint-cli.js",
-    "tldr-format": "lib/tldr-format-cli.js"
+    "tldr-format": "lib/tldr-format-cli.js -f"
   },
   "keywords": [
     "tldr",
