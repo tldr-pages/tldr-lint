@@ -8,7 +8,7 @@
 
 %%
 
-page      : title description examples
+page      : title NEWLINE description examples
           ;
 
 title     : HASH TITLE
@@ -19,14 +19,20 @@ description   : GREATER_THAN DESCRIPTION_LINE
               ;
 
 examples  : %empty
-          | examples example_description example_commands
+          | examples example
+          ;
+
+example   : NEWLINE example_description NEWLINE example_commands
           ;
 
 example_description : DASH EXAMPLE_DESCRIPTION
                     ;
 
-example_commands    : EXAMPLE_COMMAND
-                    | example_commands EXAMPLE_COMMAND
+example_commands    : example_command
+                    | example_commands example_command
+                    ;
+
+example_command     : BACKTICK EXAMPLE_COMMAND BACKTICK
                     ;
 
 /* page    : title NEWLINE descriptions examples EOF */

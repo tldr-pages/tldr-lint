@@ -4,8 +4,8 @@
 
 %{
   yy.initLexer(yy.lexer);
-  num_descriptions = 0;
-  num_example_commands = 0; 
+  /* num_descriptions = 0; */
+  /* num_example_commands = 0; */ 
 %}
 
 %%
@@ -15,42 +15,43 @@
   console.error('trailing whitespace');
 %}
 
-(\s*)([\#\>-])(\s*)
+\t+
 %{
-  /* console.log(this.matches); */
-  if (this.matches[2] === '#') {
-    this.pushState('title');
-    if (this.matches[1]) {
-      console.error('leading whitespace');
-    }
-    if (yylloc.first_line !== 1) {
-      console.error('title should be at start of file')
-    }
-    return 'HASH'; 
+  console.error('No tabs allowed');
+%}
+
+\r\n?
+%{
+  console.error('Only Unix-style line endings allowed');
+  return 'NEWLINE';
+%}
+
+(\s*)\#(\s*)
+%{
+  this.pushState('title');
+  if (this.matches[1]) {
+    console.error('no whitespace before title');
   }
-  if (num_descriptions >= 1) {
-    if (this.matches[1]) {
-      console.error('No newlines in top description');
-    }
-  } else if (!this.matches[1]) {
-    console.error('There should be extra newlines between every line');
-  } else if (this.matches[1].indexOf('\n') === -1) {
-    console.error('There should be extra newlines between every line');
-  } else if (this.matches[1].length > 1) {
-    console.error('Just a single newline will suffice');
+  if (yylloc.first_line !== 1) {
+    console.error('title should be at start of file')
   }
-  if (this.matches[2] == '>') {
+  return 'HASH'; 
+%}
+
+([\>-])(\s*)
+%{
+  if (this.matches[1] == '>') {
     this.pushState('description');
     return 'GREATER_THAN';
   } else {
     this.pushState('example_description');
     return 'DASH';
   }
-  if (!this.matches[3]) {
+  if (!this.matches[2]) {
     console.error('Should be single space');
-  } else if (this.matches[3].length > 1) {
+  } else if (this.matches[2].length > 1) {
     console.error('Just a single space man');
-  } else if (this.matches[3] !== ' ') {
+  } else if (this.matches[2] !== ' ') {
     console.error('Thats not even a space');
   }
 %}
@@ -97,20 +98,41 @@
   }
 %}
 
-`\n
+(.*?(?:\{\{(.*)\}\})*)*
 %{
   if (this.topState() === 'example_command') {
-    return 'BACKTICK'
+    console.log(this.matches);
+    return 'EXAMPLE_COMMAND';
   } else {
     this.reject();
   }
 %}
 
-(\s*)`(\s*)
+
+
+`\n
 %{
-  blabla open backtick
+  if (this.topState() === 'example_command') {
+    this.popState();
+    return 'BACKTICK';
+  } else {
+    this.reject();
+  }
 %}
 
+`
+%{
+  this.pushState('example_command');
+  return 'BACKTICK';
+%}
+
+(\n)+
+%{
+  if (this.match.length > 1) {
+    console.error('Only one newline')
+  }  
+  return 'NEWLINE';
+%}
 // TODO num_example_commands incrementen zo kan ik errors geven bij rare
 // newlines enzo Laat toch de grammatica de rest van het groffe werk doen hier
 // is al te veel gehack
