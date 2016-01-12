@@ -34,4 +34,16 @@ describe("TLDR conventions", function() {
     expect(containsOnlyErrors(errors, 'TLDR005')).toBeTruthy();
     expect(errors.length).toBe(2);
   });
+
+  it("TLDR006\t" + linter.ERRORS.TLDR006, function() {
+    var errors = lintFile('pages/006.md').errors;
+    expect(containsOnlyErrors(errors, 'TLDR006')).toBeTruthy();
+    expect(errors.length).toBe(1);
+  });
+
+  it("TLDR007\t" + linter.ERRORS.TLDR007, function() {
+    var errors = lintFile('pages/007.md').errors;
+    expect(containsOnlyErrors(errors, 'TLDR007')).toBeTruthy();
+    expect(errors.length).toBe(2);
+  });
 });
