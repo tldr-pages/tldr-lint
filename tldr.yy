@@ -1,7 +1,7 @@
 %token HASH GREATER_THAN DASH
 %token BACKTICK
 %token NEWLINE
-%token EXAMPLE_COMMAND_TOKEN EXAMPLE_COMMAND_TEXT
+%token COMMAND_TOKEN COMMAND_TEXT
 
 %start page
 
@@ -10,10 +10,10 @@
 page      : title NEWLINE description examples
           ;
 
-title     : HASH TITLE
+title     : HASH TITLE  -> yy.setTitle($TITLE) 
           ;
 
-description   : GREATER_THAN DESCRIPTION_LINE
+description   : GREATER_THAN DESCRIPTION_LINE -> yy.addDescription($DESCRPTION_LINE)
               | description GREATER_THAN DESCRIPTION_LINE
               ;
 
@@ -22,21 +22,25 @@ examples  : %empty
           ;
 
 example   : NEWLINE example_description NEWLINE example_commands
+            -> yy.addExample($example_description, $example_commands)
           ;
 
-example_description : DASH EXAMPLE_DESCRIPTION
+example_description : DASH EXAMPLE_DESCRIPTION  -> $EXAMPLE_DESCRIPTION
                     ;
 
 example_commands    : example_command
                     | example_commands example_command
+                      -> [].concat($example_commands, [$example_command])
                     ;
 
-example_command     : BACKTICK example_command_inner BACKTICK
+example_command     : BACKTICK example_command_inner BACKTICK -> $example_command_inner
                     ;
 
 example_command_inner : %empty
-                      | example_command_inner EXAMPLE_COMMAND_TEXT
-                      | example_command_inner EXAMPLE_COMMAND_TOKEN
+                      | example_command_inner COMMAND_TEXT
+                        -> [].concat($example_command_inner, [yy.createCommandText($COMMAND_TEXT)])
+                      | example_command_inner COMMAND_TOKEN
+                        -> [].concat($example_command_inner, [yy.createToken($COMMAND_TOKEN)])
                       ;
 
 /* page    : title NEWLINE descriptions examples EOF */
