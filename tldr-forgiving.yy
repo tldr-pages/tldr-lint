@@ -1,4 +1,3 @@
-%token WORD
 %token SPECIAL
 %token SENTENCE
 %token HASH GREATER DASH PERIOD
@@ -6,10 +5,15 @@
 %token BACKTICK
 %token TEXT WHITESPACE
 %token NEWLINE
+%token COLON
 
 %start page
 
 %%
+
+// In order to keep the grammar relatively dumb, i.e. unaware of tokens in
+// descriptions or in commands, some workarounds (yes, hacks) had to be
+// inserted. Decent tokenizing is only necessary for the full tldr linter.
 
 page    : title descriptions examples EOF
         // Whoever starts files with newlines
@@ -32,6 +36,7 @@ description : GREATER WHITESPACE sentence -> yy.addDescription($sentence)
 
 // Added in %prec to make sure TEXT doesn't eat PERIOD. Only works for simple sentences.
 sentence    : SENTENCE eos  -> $SENTENCE
+            | BACKTICK SENTENCE eos -> $BACKTICK + $SENTENCE
             | SENTENCE BACKTICK eos -> $SENTENCE + $BACKTICK
             ;
 
@@ -41,6 +46,7 @@ whitespace  : WHITESPACE
 
 eos     : NEWLINE
         | PERIOD NEWLINE
+        | COLON NEWLINE
         ;
 
 examples    : example examples
