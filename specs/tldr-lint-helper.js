@@ -10,6 +10,7 @@ lintFile = function(file) {
 };
 
 containsErrors = function(errors, expected) {
+  if (errors.length === 0) return false;
   if (!(expected instanceof Array))
     expected = Array.prototype.splice.call(arguments, 1);
   expected.forEach(function(expectedCode) {
@@ -24,14 +25,17 @@ containsOnlyErrors = function(errors, expected) {
   if (!(expected instanceof Array)) {
     expected = Array.prototype.splice.call(arguments, 1);
   }
-  if (expected.length != errors.length) {
-    return false;
-  }
   expected.forEach(function(error) {
     if (!containsErrors(errors, error)) { 
+      console.error('Couldnt find error', error, 'in these errors')
       console.error(errors)
       return false;
     };
   });
+  errors.forEach(function(errorCode) {
+    if (!expected.some(function(expectedCode) { errorCode === expectedCode; }))
+      return false;
+  });
   return true;
-}
+};
+

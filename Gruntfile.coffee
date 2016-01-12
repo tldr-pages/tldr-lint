@@ -37,9 +37,19 @@ module.exports = (grunt) ->
         ]
         tasks: ['exec:jison']
 
+      specs:
+        files: [
+          'specs/*.js'
+#          'specs/pages/*.md'
+          'lib/*.js'
+          '*.l'
+          '*.yy'
+        ]
+        tasks: ['jasmine_nodejs']
+
     grunt.registerTask 'default', ['clean', 'exec:jison']
     grunt.registerTask 'test', 'jasmine_nodejs'
-    grunt.registerTask 'dev', ['default', 'watch']
+    grunt.registerTask 'dev', ['default', 'test', 'watch']
     grunt.loadNpmTasks lib for lib in gruntLibs
 
 gruntLibs = [
