@@ -1,4 +1,4 @@
-%token HASH SPACE GREATER DASH PERIOD
+%token HASH SPACE GREATER_THAN DASH PERIOD
 %token LBRACE RBRACE
 %token BACKTICK
 %token CAPITAL TEXT
@@ -8,35 +8,56 @@
 
 %%
 
-page    : title NEWLINE descriptions examples EOF
-        ;
+page      : title description examples
+          ;
 
-title   : HASH TEXT NEWLINE -> yy.error(@$, 'TLDR001') 
-        | HASH SPACE TEXT NEWLINE 
-        ;
+title     : HASH TITLE
+          ;
 
+description   : GREATER_THAN DESCRIPTION_LINE
+              | description GREATER_THAN DESCRIPTION_LINE
+              ;
 
-descriptions : description descriptions 
-             | %empty
-             ;
-             
-description : GREATER SPACE sentence NEWLINE -> yy.addDescription($sentence)
-            ;
+examples  : %empty
+          | examples example_description example_commands
+          ;
 
-// Added in %prec to make sure TEXT doesn't eat PERIOD. Only works for simple sentences.
-sentence    : CAPITAL TEXT %prec PERIOD
-            ;
-
-examples    : example examples
-            | %empty
-            ;
-
-example     : NEWLINE example_description NEWLINE command NEWLINE 
-              -> yy.addExample($example_description, $command)
-            ;
-
-example_description : DASH SPACE sentence NEWLINE
+example_description : DASH EXAMPLE_DESCRIPTION
                     ;
 
-command     : BACKTICK TEXT %prec BACKTICK -> $TEXT
-            ;
+example_commands    : EXAMPLE_COMMAND
+                    | example_commands EXAMPLE_COMMAND
+                    ;
+
+/* page    : title NEWLINE descriptions examples EOF */
+/*         ; */
+
+/* title   : HASH TEXT NEWLINE -> yy.error(@$, 'TLDR001') */ 
+/*         | HASH SPACE TEXT NEWLINE */ 
+/*         ; */
+
+
+/* descriptions : description descriptions */ 
+/*              | %empty */
+/*              ; */
+             
+/* description : GREATER_THAN SPACE sentence NEWLINE -> yy.addDescription($sentence) */
+/*             ; */
+
+/* // Added in %prec to make sure TEXT doesn't eat PERIOD. Only works for simple sentences. */
+/* sentence    : CAPITAL TEXT %prec PERIOD */
+/*             ; */
+
+/* examples    : example examples */
+/*             | %empty */
+/*             ; */
+
+/* example     : NEWLINE example_description NEWLINE command NEWLINE */ 
+/*               -> yy.addExample($example_description, $command) */
+/*             ; */
+
+/* example_description : DASH SPACE sentence NEWLINE */
+/*                     ; */
+
+/* command     : BACKTICK TEXT %prec BACKTICK -> $TEXT */
+/*             ; */
