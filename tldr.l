@@ -25,7 +25,13 @@
 
 [^\n]<<EOF>>
 %{
-  this.less(1);
+  // this.setInput resets the state as well, so push that back in
+  var currentConditionStack = this.conditionStack;
+  var currentConditions = this.conditions;
+  // Basically replace EOF with a final newline so lexing can continue
+  this.setInput(this.match + '\n')
+  this.conditionStack = currentConditionStack;
+  this.currentConditions = currentConditions;
   yy.error(yylloc, 'TLDR009');
 %}
 

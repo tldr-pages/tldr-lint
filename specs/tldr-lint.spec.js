@@ -52,4 +52,10 @@ describe("TLDR conventions", function() {
     expect(containsOnlyErrors(errors, 'TLDR008')).toBeTruthy();
     expect(errors.length).toBe(1);
   });
+
+  it("TLDR009\t" + linter.ERRORS.TLDR009, function() {
+    var errors = lintFile('pages/009.md').errors;
+    expect(containsOnlyErrors(errors, 'TLDR009')).toBeTruthy();
+    expect(errors.length).toBe(1);
+  });
 });
