@@ -83,7 +83,7 @@ space [ \t]
   }
 %}
 
-(.+?)([\.,;!\?\`]?){eol}
+(.+?)([\.,;!\?]?){eol}
 %{
   if (this.topState() === 'description') {
     this.popState();
@@ -103,7 +103,7 @@ space [ \t]
 %}
 
 
-(.+?)(.?){eol}
+(.+?)([\.:,;]?){eol}
 %{
   if (this.topState() === 'example_description') {
     this.popState();

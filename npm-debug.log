@@ -1,0 +1,112 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'rubenvereecken/tldr-lint' ]
+2 info using npm@3.3.12
+3 info using node@v5.3.0
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 silly fetchPackageMetaData rubenvereecken/tldr-lint
+8 silly fetchOtherPackageData rubenvereecken/tldr-lint
+9 silly cache add args [ 'rubenvereecken/tldr-lint', null ]
+10 verbose cache add spec rubenvereecken/tldr-lint
+11 silly cache add parsed spec Result {
+11 silly cache add   raw: 'rubenvereecken/tldr-lint',
+11 silly cache add   scope: null,
+11 silly cache add   name: null,
+11 silly cache add   rawSpec: 'rubenvereecken/tldr-lint',
+11 silly cache add   spec: 'github:rubenvereecken/tldr-lint',
+11 silly cache add   type: 'hosted',
+11 silly cache add   hosted:
+11 silly cache add    { type: 'github',
+11 silly cache add      ssh: 'git@github.com:rubenvereecken/tldr-lint.git',
+11 silly cache add      sshUrl: 'git+ssh://git@github.com/rubenvereecken/tldr-lint.git',
+11 silly cache add      httpsUrl: 'git+https://github.com/rubenvereecken/tldr-lint.git',
+11 silly cache add      gitUrl: 'git://github.com/rubenvereecken/tldr-lint.git',
+11 silly cache add      shortcut: 'github:rubenvereecken/tldr-lint',
+11 silly cache add      directUrl: 'https://raw.githubusercontent.com/rubenvereecken/tldr-lint/master/package.json' } }
+12 verbose addRemoteGit caching rubenvereecken/tldr-lint
+13 verbose addRemoteGit rubenvereecken/tldr-lint is a repository hosted by github
+14 silly tryGitProto attempting to clone git://github.com/rubenvereecken/tldr-lint.git
+15 silly tryClone cloning rubenvereecken/tldr-lint via git://github.com/rubenvereecken/tldr-lint.git
+16 verbose tryClone git-github-com-rubenvereecken-tldr-lint-git-491bea4cfc58eec1b98ef25c346f61df not in flight; caching
+17 info git [ 'config', '--get', 'remote.origin.url' ]
+18 silly validateExistingRemote rubenvereecken/tldr-lint remote.origin.url: git://github.com/rubenvereecken/tldr-lint.git
+19 verbose validateExistingRemote rubenvereecken/tldr-lint is updating existing cached remote /home/ruben/.npm/_git-remotes/git-github-com-rubenvereecken-tldr-lint-git-491bea4cfc58eec1b98ef25c346f61df
+20 info git [ 'fetch', '-a', 'origin' ]
+21 verbose updateRemote git fetch -a origin (git://github.com/rubenvereecken/tldr-lint.git)
+22 verbose setPermissions rubenvereecken/tldr-lint set permissions on /home/ruben/.npm/_git-remotes/git-github-com-rubenvereecken-tldr-lint-git-491bea4cfc58eec1b98ef25c346f61df
+23 verbose resolveHead rubenvereecken/tldr-lint original treeish: master
+24 info git [ 'rev-list', '-n1', 'master' ]
+25 silly resolveHead rubenvereecken/tldr-lint resolved treeish: 73c1295f14ae61d0eb0165d37d457324638606ec
+26 verbose resolveHead rubenvereecken/tldr-lint resolved Git URL: git://github.com/rubenvereecken/tldr-lint.git#73c1295f14ae61d0eb0165d37d457324638606ec
+27 silly resolveHead Git working directory: /tmp/npm-28764-7edbd965/git-cache-3c40987f1ddf5f492976379ecda1922c/73c1295f14ae61d0eb0165d37d457324638606ec
+28 info git [ 'clone',
+28 info git   '/home/ruben/.npm/_git-remotes/git-github-com-rubenvereecken-tldr-lint-git-491bea4cfc58eec1b98ef25c346f61df',
+28 info git   '/tmp/npm-28764-7edbd965/git-cache-3c40987f1ddf5f492976379ecda1922c/73c1295f14ae61d0eb0165d37d457324638606ec' ]
+29 verbose cloneResolved rubenvereecken/tldr-lint clone Cloning into '/tmp/npm-28764-7edbd965/git-cache-3c40987f1ddf5f492976379ecda1922c/73c1295f14ae61d0eb0165d37d457324638606ec'...
+29 verbose cloneResolved done.
+30 info git [ 'checkout', '73c1295f14ae61d0eb0165d37d457324638606ec' ]
+31 verbose checkoutTreeish rubenvereecken/tldr-lint checkout Note: checking out '73c1295f14ae61d0eb0165d37d457324638606ec'.
+31 verbose checkoutTreeish
+31 verbose checkoutTreeish You are in 'detached HEAD' state. You can look around, make experimental
+31 verbose checkoutTreeish changes and commit them, and you can discard any commits you make in this
+31 verbose checkoutTreeish state without impacting any branches by performing another checkout.
+31 verbose checkoutTreeish
+31 verbose checkoutTreeish If you want to create a new branch to retain commits you create, you may
+31 verbose checkoutTreeish do so (now or later) by using -b with the checkout command again. Example:
+31 verbose checkoutTreeish
+31 verbose checkoutTreeish   git checkout -b new_branch_name
+31 verbose checkoutTreeish
+31 verbose checkoutTreeish HEAD is now at 73c1295... Periods are now allowed in title, just not at the end
+32 verbose addLocalDirectory /home/ruben/.npm/tldr-lint/0.0.5/package.tgz not in flight; packing
+33 verbose tar pack [ '/home/ruben/.npm/tldr-lint/0.0.5/package.tgz',
+33 verbose tar pack   '/tmp/npm-28764-7edbd965/git-cache-3c40987f1ddf5f492976379ecda1922c/73c1295f14ae61d0eb0165d37d457324638606ec' ]
+34 verbose tarball /home/ruben/.npm/tldr-lint/0.0.5/package.tgz
+35 verbose folder /tmp/npm-28764-7edbd965/git-cache-3c40987f1ddf5f492976379ecda1922c/73c1295f14ae61d0eb0165d37d457324638606ec
+36 verbose addLocalTarball adding from inside cache /home/ruben/.npm/tldr-lint/0.0.5/package.tgz
+37 verbose addRemoteGit data._from: rubenvereecken/tldr-lint
+38 verbose addRemoteGit data._resolved: git://github.com/rubenvereecken/tldr-lint.git#73c1295f14ae61d0eb0165d37d457324638606ec
+39 silly cache afterAdd tldr-lint@0.0.5
+40 verbose afterAdd /home/ruben/.npm/tldr-lint/0.0.5/package/package.json not in flight; writing
+41 verbose afterAdd /home/ruben/.npm/tldr-lint/0.0.5/package/package.json written
+42 silly install normalizeTree
+43 silly loadCurrentTree Finishing
+44 silly loadIdealTree Starting
+45 silly install loadIdealTree
+46 silly cloneCurrentTree Starting
+47 silly install cloneCurrentTreeToIdealTree
+48 silly cloneCurrentTree Finishing
+49 silly loadShrinkwrap Starting
+50 silly install loadShrinkwrap
+51 silly loadShrinkwrap Finishing
+52 silly loadAllDepsIntoIdealTree Starting
+53 silly install loadAllDepsIntoIdealTree
+54 silly rollbackFailedOptional Starting
+55 silly rollbackFailedOptional Finishing
+56 silly runTopLevelLifecycles Starting
+57 silly runTopLevelLifecycles Finishing
+58 silly install printInstalled
+59 verbose stack Error: Refusing to install tldr-lint as a dependency of itself
+59 verbose stack     at checkSelf (/usr/local/lib/node_modules/npm/lib/install/validate-args.js:40:14)
+59 verbose stack     at Array.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/slide/lib/bind-actor.js:15:8)
+59 verbose stack     at LOOP (/usr/local/lib/node_modules/npm/node_modules/slide/lib/chain.js:15:14)
+59 verbose stack     at chain (/usr/local/lib/node_modules/npm/node_modules/slide/lib/chain.js:20:5)
+59 verbose stack     at /usr/local/lib/node_modules/npm/lib/install/validate-args.js:15:5
+59 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/slide/lib/async-map.js:52:35
+59 verbose stack     at Array.forEach (native)
+59 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/slide/lib/async-map.js:52:11
+59 verbose stack     at Array.forEach (native)
+59 verbose stack     at asyncMap (/usr/local/lib/node_modules/npm/node_modules/slide/lib/async-map.js:51:8)
+60 verbose cwd /home/ruben/tldr-lint
+61 error Linux 3.16.0-38-generic
+62 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "install" "rubenvereecken/tldr-lint"
+63 error node v5.3.0
+64 error npm  v3.3.12
+65 error code ENOSELF
+66 error Refusing to install tldr-lint as a dependency of itself
+67 error If you need help, you may report this error at:
+67 error     <https://github.com/npm/npm/issues>
+68 verbose exit [ 1, true ]
