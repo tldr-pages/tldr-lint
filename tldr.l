@@ -5,6 +5,8 @@
   yy.initLexer(yy.lexer);
 %}
 
+eol (?:\r\n)|\n|\r
+
 %%
 
 \s+<<EOF>>
@@ -15,12 +17,6 @@
 \t+
 %{
   console.error('No tabs allowed');
-%}
-
-\r\n?
-%{
-  console.error('Only Unix-style line endings allowed');
-  return 'NEWLINE';
 %}
 
 [^\n]<<EOF>>
@@ -61,13 +57,12 @@
   }
 %}
 
-([a-z0-9-]+)(\.?)\n 
+([a-z0-9-]+)(\.?){eol}
 %{
   if (this.topState() === "title") {
     yytext = this.matches[1];
-    if (this.matches[2] == '.') {
-      console.error('nowp no period there');
-    }
+    if (this.matches[2] == '.') { console.error('nowp no period there'); }
+    this.checkNewline(this.matches[3], yylloc);
     this.popState();
     return 'TITLE';
   } else {
@@ -75,13 +70,14 @@
   }
 %}
 
-([\w\+_\(\)\.,; -]+?)(.?)\n
+([\w\+_\(\)\.,; -]+?)(.?){eol}
 %{
   if (this.topState() === 'description') {
     this.popState();
     yytext = this.matches[1];
     if (!yytext.match(/^[A-Z]/)) yy.error(yylloc, 'TLDR003');
     if (this.matches[2] !== '.') yy.error(yylloc, 'TLDR004');
+    this.checkNewline(this.matches[3], yylloc);
     return 'DESCRIPTION_LINE';
   } else {
     this.reject();
@@ -89,23 +85,25 @@
 %}
 
 
-([\w\+_\(\) \.,\{\};-]+?)(.?)\n
+([\w\+_\(\) \.,\{\};-]+?)(.?){eol}
 %{
   if (this.topState() === 'example_description') {
     this.popState();
     yytext = this.matches[1];
     if (!yytext.match(/^[A-Z]/)) yy.error(yylloc, 'TLDR003');
     if (this.matches[2] !== ':') yy.error(yylloc, 'TLDR005');
+    this.checkNewline(this.matches[3], yylloc);
     return 'EXAMPLE_DESCRIPTION'
   } else {
     this.reject();
   }
 %}
 
-\`\n
+\`{eol}
 %{
   if (this.topState() === 'example_command') {
     this.popState();
+    this.checkNewline(this.matches[1], yylloc);
     return 'BACKTICK';
   } else {
     this.reject();
@@ -146,10 +144,19 @@
   } else this.reject();
 %}
 
-(\n)+
+{eol}+
 %{
-  if (this.match.length > 1) {
-    console.error('Only one newline')
-  }  
+  // Either you've got more than a single \n or \r or more than \r\n
+  var isdos = this.match.match(/\r\n/);
+  if (isdos && this.match.length > 2 || !isdos && this.match.length > 1) {
+    yy.error(yylloc, 'TLDR011');
+  } 
+  this.checkNewline(this.match, yylloc);
   return 'NEWLINE';
+%}
+
+.
+%{
+  console.log(this.topState());
+  console.log(this.matches);  
 %}
