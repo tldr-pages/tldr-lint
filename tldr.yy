@@ -16,7 +16,7 @@ title     : HASH TITLE  -> yy.setTitle($TITLE)
           ;
 
 description   : GREATER_THAN DESCRIPTION_LINE -> yy.addDescription($DESCRIPTION_LINE)
-              | description GREATER_THAN DESCRIPTION_LINE
+              | description GREATER_THAN DESCRIPTION_LINE -> yy.addDescription($DESCRIPTION_LINE)
               ;
 
 examples  : %empty

@@ -36,7 +36,10 @@ space [ \t]
 
 (\s*)\#(\s*)
 %{
-  if (this.topState !== 'INITIAL') this.reject()
+  if (this.topState() !== 'INITIAL') {
+    this.reject();
+    return;
+  }
   this.pushState('title');
   if (this.matches[1]) {
     yy.error(yylloc, 'TLDR001');
@@ -49,7 +52,10 @@ space [ \t]
 
 ([\>-])(\s*)
 %{
-  if (this.topState !== 'INITIAL') this.reject()
+  if (this.topState() !== 'INITIAL') {
+    this.reject();
+    return;
+  }
   if (this.matches[2] !== ' ') {
     yy.error(yylloc, 'TLDR002')
   } 
@@ -68,7 +74,7 @@ space [ \t]
 %{
   if (this.topState() === "title") {
     yytext = this.matches[1];
-    if (this.matches[1].match(/[^A-Za-z0-9_-]/)) yy.error(yylloc, 'TLDR013')
+    if (this.matches[1].match(/[^A-Za-z0-9_ -]/)) yy.error(yylloc, 'TLDR013')
     this.checkNewline(this.matches[2], yylloc);
     this.popState();
     return 'TITLE';
@@ -77,13 +83,18 @@ space [ \t]
   }
 %}
 
-(.+?)(.?){eol}
+(.+?)([\.,;!\?\`]?){eol}
 %{
   if (this.topState() === 'description') {
     this.popState();
     yytext = this.matches[1];
     if (!yytext.match(/^[A-Z]/)) yy.error(yylloc, 'TLDR003');
-    if (this.matches[2] !== '.') yy.error(yylloc, 'TLDR004');
+    var punctuation = this.matches[2];
+    if (punctuation !== '.') {
+      yy.error(yylloc, 'TLDR004');
+    }
+    if (punctuation.match(/[,;]/)) 
+      console.warn('Description ends in\'', punctuation, '\'. Consider writing your sentence on one line.');
     this.checkNewline(this.matches[3], yylloc);
     return 'DESCRIPTION_LINE';
   } else {
