@@ -88,7 +88,7 @@ space [ \t]
   if (this.topState() === 'description') {
     this.popState();
     yytext = this.matches[1];
-    if (!yytext.match(/^[A-Z]/)) yy.error(yylloc, 'TLDR003');
+    if (yytext.match(/^[a-z]/)) yy.error(yylloc, 'TLDR003');
     var punctuation = this.matches[2];
     if (punctuation !== '.') {
       yy.error(yylloc, 'TLDR004');
