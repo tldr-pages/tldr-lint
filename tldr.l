@@ -45,7 +45,7 @@ space [ \t]
     yy.error(yylloc, 'TLDR001');
   }
   if (this.matches[2] !== ' ') {
-    yy.error(yylloc, 'TLDR002')
+    yy.error(yylloc, 'TLDR002');
   } 
   return 'HASH'; 
 %}
@@ -57,7 +57,7 @@ space [ \t]
     return;
   }
   if (this.matches[2] !== ' ') {
-    yy.error(yylloc, 'TLDR002')
+    yy.error(yylloc, 'TLDR002');
   } 
   if (this.matches[1] == '>') {
     this.pushState('description');
@@ -74,7 +74,7 @@ space [ \t]
 %{
   if (this.topState() === "title") {
     yytext = this.matches[1];
-    if (this.matches[1].match(/[^A-Za-z0-9_ -]/)) yy.error(yylloc, 'TLDR013')
+    if (this.matches[1].match(/[^A-Za-z0-9_ -]/)) yy.error(yylloc, 'TLDR013');
     this.checkNewline(this.matches[2], yylloc);
     this.popState();
     return 'TITLE';
@@ -111,7 +111,7 @@ space [ \t]
     if (!yytext.match(/^[A-Z]/)) yy.error(yylloc, 'TLDR003');
     if (this.matches[2] !== ':') yy.error(yylloc, 'TLDR005');
     this.checkNewline(this.matches[3], yylloc);
-    return 'EXAMPLE_DESCRIPTION'
+    return 'EXAMPLE_DESCRIPTION';
   } else {
     this.reject();
   }
