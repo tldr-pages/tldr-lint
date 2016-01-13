@@ -36,6 +36,7 @@ space [ \t]
 
 (\s*)\#(\s*)
 %{
+  if (this.topState !== 'INITIAL') this.reject()
   this.pushState('title');
   if (this.matches[1]) {
     yy.error(yylloc, 'TLDR001');
@@ -48,6 +49,7 @@ space [ \t]
 
 ([\>-])(\s*)
 %{
+  if (this.topState !== 'INITIAL') this.reject()
   if (this.matches[2] !== ' ') {
     yy.error(yylloc, 'TLDR002')
   } 
@@ -60,6 +62,8 @@ space [ \t]
   }
 %}
 
+// All regexes below are actually about the same, but it's better organized
+// this way around.
 (.+){eol}
 %{
   if (this.topState() === "title") {
@@ -73,7 +77,7 @@ space [ \t]
   }
 %}
 
-([\w\+_\(\)\.,; -]+?)(.?){eol}
+(.+?)(.?){eol}
 %{
   if (this.topState() === 'description') {
     this.popState();
@@ -88,7 +92,7 @@ space [ \t]
 %}
 
 
-([\w\+_\(\) \.,\{\};-]+?)(.?){eol}
+(.+?)(.?){eol}
 %{
   if (this.topState() === 'example_description') {
     this.popState();
