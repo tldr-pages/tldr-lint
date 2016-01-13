@@ -74,7 +74,7 @@ space [ \t]
 %{
   if (this.topState() === "title") {
     yytext = this.matches[1];
-    if (this.matches[1].match(/[^A-Za-z0-9_ -]/)) yy.error(yylloc, 'TLDR013');
+    if (this.matches[1].match(/([^A-Za-z0-9_\. -])|(\.$)/)) yy.error(yylloc, 'TLDR013');
     this.checkNewline(this.matches[2], yylloc);
     this.popState();
     return 'TITLE';
