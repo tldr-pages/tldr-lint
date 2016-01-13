@@ -7,7 +7,7 @@ It can also format your pages for you!
 It's really simple.
 
 ```
-  Usage: tldr-lint [options] <file>
+  Usage: tldr-lint [options] <file|dir>
 
   Options:
 
