@@ -1,6 +1,6 @@
 {
   "name": "tldr-lint",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Linter for TLDR pages.",
   "repository": {
     "type": "git",
@@ -11,7 +11,8 @@
     "test": "grunt test"
   },
   "bin": {
-    "tldr-lint": "lib/tldr-lint-cli.js"
+    "tldr-lint": "lib/tldr-lint-cli.js",
+    "tldrl": "lib/tldr-lint-cli.js"
   },
   "keywords": [
     "tldr",
