@@ -6,6 +6,7 @@
 %}
 
 eol (?:\r\n)|\n|\r
+space [ \t]
 
 %%
 
@@ -14,9 +15,11 @@ eol (?:\r\n)|\n|\r
   yy.error(yylloc, 'TLDR008');
 %}
 
-\t+
+.*?\t+.*
 %{
-  console.error('No tabs allowed');
+  yy.error(yylloc, 'TLDR012');
+  var cleaned = this.match.replace(/\t/g, ' ');
+  this.unput(cleaned);
 %}
 
 [^\n]<<EOF>>
@@ -57,12 +60,12 @@ eol (?:\r\n)|\n|\r
   }
 %}
 
-([a-z0-9-]+)(\.?){eol}
+(.+){eol}
 %{
   if (this.topState() === "title") {
     yytext = this.matches[1];
-    if (this.matches[2] == '.') { console.error('nowp no period there'); }
-    this.checkNewline(this.matches[3], yylloc);
+    if (this.matches[1].match(/[^A-Za-z0-9_-]/)) yy.error(yylloc, 'TLDR013')
+    this.checkNewline(this.matches[2], yylloc);
     this.popState();
     return 'TITLE';
   } else {
