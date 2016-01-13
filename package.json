@@ -1,6 +1,6 @@
 {
   "name": "tldr-lint",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Linter for TLDR pages.",
   "repository": {
     "type": "git",
