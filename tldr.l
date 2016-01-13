@@ -9,7 +9,7 @@
 
 \s+<<EOF>>
 %{
-  console.error('trailing whitespace');
+  yy.error(yylloc, 'TLDR008');
 %}
 
 \t+
@@ -21,6 +21,12 @@
 %{
   console.error('Only Unix-style line endings allowed');
   return 'NEWLINE';
+%}
+
+[^\n]<<EOF>>
+%{
+  this.less(1);
+  yy.error(yylloc, 'TLDR009');
 %}
 
 (\s*)\#(\s*)
