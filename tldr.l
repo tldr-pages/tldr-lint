@@ -12,7 +12,6 @@ space [ \t]
 
 \s+<<EOF>>
 %{
-  console.log(this.matches);
   yy.error(yylloc, 'TLDR008');
 %}
 
@@ -158,6 +157,12 @@ space [ \t]
 %{
   if (this.topState() === 'example_command') {
     if (this.matches[2] === '`') this.unput(this.matches[2]);
+    else {
+      // I used to handle this one in the compiler but got shift/reduce probs
+      // Basically what this does it notice when it goes wrong, then repair it
+      this.unput('`' + this.matches[2]);
+      yy.error(yylloc, 'TLDR103')
+    }
     yytext = this.matches[1];
     return 'COMMAND_TEXT';
   } else this.reject();
