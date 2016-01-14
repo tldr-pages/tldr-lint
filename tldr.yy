@@ -42,6 +42,7 @@ maybe_newline   : %empty
                 ;
 
 example_description : DASH EXAMPLE_DESCRIPTION  -> $EXAMPLE_DESCRIPTION
+                    | TEXT -> yy.error(@$, 'TLDR101') || $TEXT
                     ;
 
 example_commands    : example_command   -> [$example_command]
@@ -50,6 +51,7 @@ example_commands    : example_command   -> [$example_command]
                     ;
 
 example_command     : BACKTICK example_command_inner BACKTICK -> $example_command_inner
+                    | BACKTICK example_command_inner          -> yy.error(@$, 'TLDR103') || $example_command_inner
                     ;
 
 example_command_inner : -> []

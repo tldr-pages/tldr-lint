@@ -12,6 +12,7 @@ space [ \t]
 
 \s+<<EOF>>
 %{
+  console.log(this.matches);
   yy.error(yylloc, 'TLDR008');
 %}
 
@@ -153,10 +154,10 @@ space [ \t]
   } else this.reject();
 %}
 
-([^\`\n]+?)\`
+([^\`\n]+?)(\`|{eol})
 %{
   if (this.topState() === 'example_command') {
-    this.unput('`');
+    if (this.matches[2] === '`') this.unput(this.matches[2]);
     yytext = this.matches[1];
     return 'COMMAND_TEXT';
   } else this.reject();
@@ -173,8 +174,11 @@ space [ \t]
   return 'NEWLINE';
 %}
 
-.+{eol}
+// This is a catchall that just slurps up a line if doesn't match
+// The compiler can then use it to create meaningful errors since it has
+// more context than the lexer does
+(.+?)[\.:]?{eol}
 %{
-  console.log(this.matches);
+  yytext = this.matches[1];
   return 'TEXT';
 %}

@@ -81,8 +81,19 @@ describe("TLDR conventions", function() {
 describe("Common TLDR formatting errors", function() {
   it("TLDR101\t" + linter.ERRORS.TLDR101, function() {
     var errors = lintFile('pages/101.md').errors;
-    console.log(errors);
     expect(containsOnlyErrors(errors, 'TLDR101')).toBeTruthy();
+    expect(errors.length).toBe(1);
+  });
+
+  it("TLDR102\t" + linter.ERRORS.TLDR102, function() {
+    var errors = lintFile('pages/102.md').errors;
+    expect(containsOnlyErrors(errors, 'TLDR102')).toBeTruthy();
+    expect(errors.length).toBe(1);
+  });
+
+  it("TLDR103\t" + linter.ERRORS.TLDR103, function() {
+    var errors = lintFile('pages/103.md').errors;
+    expect(containsOnlyErrors(errors, 'TLDR103')).toBeTruthy();
     expect(errors.length).toBe(1);
   });
 })
