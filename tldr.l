@@ -173,8 +173,8 @@ space [ \t]
   return 'NEWLINE';
 %}
 
-.
+.+{eol}
 %{
-  console.log(this.topState());
-  console.log(this.matches);  
+  console.log(this.matches);
+  return 'TEXT';
 %}

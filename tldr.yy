@@ -3,6 +3,7 @@
 %token DESCRIPTION_LINE
 %token EXAMPLE_DESCRIPTION
 %token COMMAND_TOKEN COMMAND_TEXT
+%token TEXT
 
 %start page
 
@@ -10,6 +11,8 @@
 
 page      : title NEWLINE description examples
           | title description examples          -> yy.error(@$, 'TLDR006')
+          | title NEWLINE TEXT examples         -> yy.error(@$, 'TLDR101')
+          /* | title TEXT examples                 -> yy.error(@$, 'TLDR101') */
           ;
 
 title     : HASH TITLE  -> yy.setTitle($TITLE) 
