@@ -110,7 +110,7 @@ space [ \t]
     yytext = this.matches[1];
     if (!yytext.match(/^[A-Z]/)) yy.error(yylloc, 'TLDR003');
     if (this.matches[2] !== ':') yy.error(yylloc, 'TLDR005');
-    if (blub = yytext.match(/(^[A-Za-z]{3,}ing )|(^[A-Za-z]{1,}[^s]s )/)) {
+    if (yytext.match(/(^[A-Za-z]{3,}ing )|(^[A-Za-z]+[^us]s )/)) {
       yy.error(yylloc, 'TLDR104');
     }
     this.checkNewline(this.matches[3], yylloc);
