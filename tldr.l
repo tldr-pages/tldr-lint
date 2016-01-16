@@ -137,10 +137,16 @@ space [ \t]
   return 'BACKTICK';
 %}
 
-\{\{([^\n\`\{\}]*)\}\}
+\{\{([^\n\`\{\}]*)\}\}({eol}?)
 %{
   if (this.topState() === 'example_command') {
     yytext = this.matches[1];
+    if (this.matches[3]) {
+      // Matched a newline where there certainly should not be one
+      // This code is duplicated from two rules below.. should unify
+      this.unput('`' + this.matches[2]);
+      yy.error(yylloc, 'TLDR103')
+    }
     return 'COMMAND_TOKEN';
   } else this.reject();
 %}
@@ -161,8 +167,7 @@ space [ \t]
   if (this.topState() === 'example_command') {
     if (this.matches[2] === '`') this.unput(this.matches[2]);
     else {
-      // I used to handle this one in the compiler but got shift/reduce probs
-      // Basically what this does it notice when it goes wrong, then repair it
+      // If command doesn't end in a backtick, just add a backtick anyway
       this.unput('`' + this.matches[2]);
       yy.error(yylloc, 'TLDR103')
     }

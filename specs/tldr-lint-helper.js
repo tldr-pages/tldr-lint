@@ -32,9 +32,12 @@ containsOnlyErrors = function(errors, expected) {
       return false;
     };
   });
-  errors.forEach(function(errorCode) {
-    if (!expected.some(function(expectedCode) { errorCode === expectedCode; }))
+  for (error of errors) {
+    if (!expected.some(function(expectedCode) { 
+      return error.code === expectedCode; 
+    })) {
       return false;
-  });
+    }
+  };
   return true;
 };
