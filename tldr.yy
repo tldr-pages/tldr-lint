@@ -47,7 +47,7 @@ example_description : DASH EXAMPLE_DESCRIPTION  -> $EXAMPLE_DESCRIPTION
 
 example_commands    : example_command   -> [$example_command]
                     | example_commands example_command
-                      -> [].concat($example_commands, [$example_command])
+                      -> yy.error(@example_command, 'TLDR105') || $example_commands
                     ;
 
 example_command     : BACKTICK example_command_inner BACKTICK -> $example_command_inner
