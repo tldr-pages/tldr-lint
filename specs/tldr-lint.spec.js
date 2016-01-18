@@ -102,6 +102,12 @@ describe("Common TLDR formatting errors", function() {
     expect(containsOnlyErrors(errors, 'TLDR104')).toBeTruthy();
     expect(errors.length).toBe(2);
   });
+
+  it("TLDR106\t" + linter.ERRORS.TLDR106, function() {
+    var errors = lintFile('pages/106.md').errors;
+    expect(containsOnlyErrors(errors, 'TLDR106')).toBeTruthy();
+    expect(errors.length).toBe(1);
+  });
 });
 
 describe("TLDR pages that are simply correct", function() {

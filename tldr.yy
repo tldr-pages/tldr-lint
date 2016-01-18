@@ -12,10 +12,10 @@
 page      : title NEWLINE description examples
           | title description examples          -> yy.error(@$, 'TLDR006')
           | title NEWLINE TEXT examples         -> yy.error(@$, 'TLDR101') || yy.addDescription($TEXT);
-          /* | title TEXT examples                 -> yy.error(@$, 'TLDR101') */
           ;
 
 title     : HASH TITLE  -> yy.setTitle($TITLE) 
+          | TEXT        -> yy.error(@TEXT, 'TLDR106') || yy.setTitle($TEXT)
           ;
 
 description   : GREATER_THAN DESCRIPTION_LINE -> yy.addDescription($DESCRIPTION_LINE)
