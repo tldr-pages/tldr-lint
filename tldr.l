@@ -195,3 +195,5 @@ space [ \t]
   yytext = this.matches[1];
   return 'TEXT';
 %}
+
+<<EOF>> this.signalEOF(yylloc, yylineno)
