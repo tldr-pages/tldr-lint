@@ -83,7 +83,7 @@ space [ \t]
   }
 %}
 
-(.+?)([\.,;!\?]?){eol}
+(.+?)([\.,;!\?]?)([ ]*){eol}
 %{
   if (this.topState() === 'description') {
     this.popState();
@@ -93,9 +93,10 @@ space [ \t]
     if (punctuation !== '.') {
       yy.error(yylloc, 'TLDR004');
     }
+    if (this.matches[3] !== '') yy.error(yylloc, 'TLDR014');
     if (punctuation.match(/[,;]/)) 
       console.warn('Description ends in\'', punctuation, '\'. Consider writing your sentence on one line.');
-    this.checkNewline(this.matches[3], yylloc);
+    this.checkNewline(this.matches[4], yylloc);
     return 'DESCRIPTION_LINE';
   } else {
     this.reject();
@@ -103,7 +104,7 @@ space [ \t]
 %}
 
 
-(.+?)([\.:,;]?){eol}
+(.+?)([\.:,;]?)([ ]*){eol}
 %{
   if (this.topState() === 'example_description') {
     this.popState();
@@ -113,6 +114,8 @@ space [ \t]
     if (yytext.match(/(^[A-Za-z]{3,}ing )|(^[A-Za-z]+[^us]s )/)) {
       yy.error(yylloc, 'TLDR104');
     }
+    // Check if any sneaky spaces have been caught
+    if (this.matches[3] !== '') yy.error(yylloc, 'TLDR014');
     this.checkNewline(this.matches[3], yylloc);
     return 'EXAMPLE_DESCRIPTION';
   } else {
@@ -162,18 +165,29 @@ space [ \t]
   } else this.reject();
 %}
 
-([^\`\n]+?)(\`|{eol})
+([^\`\n]+?)(\`[ ]*|[ ]*{eol})
 %{
   if (this.topState() === 'example_command') {
-    if (this.matches[2] === '`') this.unput(this.matches[2]);
+    // Check if there are some trailing spaces
+    if (this.matches[2].match(/ /)) {
+      yy.error(yylloc, 'TLDR014');
+    }
+    // Don't swallow the trailing backtick just yet
+    if (this.matches[2].match(/\`/)) this.unput('`');
     else {
       // If command doesn't end in a backtick, just add a backtick anyway
-      this.unput('`' + this.matches[2]);
+      // Also pop back the newline. Let's pretend we don't care what that is.
+      this.unput('`\n');
       yy.error(yylloc, 'TLDR103')
     }
     yytext = this.matches[1];
     return 'COMMAND_TEXT';
   } else this.reject();
+%}
+
+[ ]+
+%{
+  yy.error(yylloc, 'TLDR014');
 %}
 
 {eol}+
