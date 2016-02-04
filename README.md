@@ -1,5 +1,10 @@
 # tldr-lint
 
+[![NPM version][npm-image]][npm-url]
+[![Travs CI Build Status][travis-image]][travis-url]
+[![David DM Dependency Status][dep-image]][dep-url]
+[![Gitter chat][gitter-image]][gitter-url]
+
 `tldr-lint` is a linting tool for validating [tldr](https://github.com/tldr-pages/tldr) pages.
 It can also format your pages for you!
 
@@ -26,3 +31,18 @@ They're all in `lib/tldr-lint.js` though if you feel inclined.
 ## TODO
 - Assert file has .md extension
 - Assert file name is same as page title
+
+[npm-url]: https://www.npmjs.com/package/tldr-lint
+[npm-image]: https://img.shields.io/npm/v/tldr-lint.svg
+
+[travis-url]: https://travis-ci.org/tldr-pages/tldr-lint
+[travis-image]: https://travis-ci.org/tldr-pages/tldr-lint.svg?branch=master
+
+[dep-url]: https://david-dm.org/tldr-pages/tldr-lint
+[dep-image]: https://david-dm.org/tldr-pages/tldr-lint.svg?theme=shields.io
+
+[dev-dep-url]: https://david-dm.org/tldr-pages/tldr-lint#info=devDependencies
+[dev-dep-image]: https://david-dm.org/tldr-pages/tldr-lint/dev-status.svg?theme=shields.io
+
+[gitter-url]: https://gitter.im/tldr-pages/tldr
+[gitter-image]: https://badges.gitter.im/tldr-pages/tldr.png
