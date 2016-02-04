@@ -26,15 +26,16 @@ containsOnlyErrors = function(errors, expected) {
     expected = Array.prototype.splice.call(arguments, 1);
   }
   expected.forEach(function(error) {
-    if (!containsErrors(errors, error)) { 
+    if (!containsErrors(errors, error)) {
       console.error('Couldnt find error', error, 'in these errors')
       console.error(errors)
       return false;
     };
   });
-  for (error of errors) {
-    if (!expected.some(function(expectedCode) { 
-      return error.code === expectedCode; 
+  for (var i = 0, error; i < errors.length; i++) {
+    var error = errors[i];
+    if (!expected.some(function(expectedCode) {
+      return error.code === expectedCode;
     })) {
       return false;
     }
