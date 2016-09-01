@@ -109,7 +109,7 @@ space [ \t]
   if (this.topState() === 'example_description') {
     this.popState();
     yytext = this.matches[1];
-    if (!yytext.match(/^[A-Z]/)) yy.error(yylloc, 'TLDR003');
+    if (!yytext.match(/^[[A-Z]/)) yy.error(yylloc, 'TLDR003');
     if (this.matches[2] !== ':') yy.error(yylloc, 'TLDR005');
     if (yytext.match(/(^[A-Za-z]{3,}ing )|(^[A-Za-z]+[^us]s )/)) {
       yy.error(yylloc, 'TLDR104');
