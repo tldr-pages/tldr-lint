@@ -25,8 +25,8 @@ describe("TLDR conventions", function() {
 
   it("TLDR004\t" + linter.ERRORS.TLDR004, function() {
     var errors = lintFile('pages/004.md').errors;
-    expect(containsOnlyErrors(errors, 'TLDR004')).toBeTruthy();
-    expect(errors.length).toBe(2);
+    expect(containsErrors(errors, ['TLDR004', 'TLDR014'])).toBeTruthy();
+    expect(errors.length).toBe(4);
   });
 
   it("TLDR005\t" + linter.ERRORS.TLDR005, function() {

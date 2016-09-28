@@ -88,14 +88,19 @@ space [ \t]
   if (this.topState() === 'description') {
     this.popState();
     yytext = this.matches[1];
-    if (yytext.match(/^[a-z]/)) yy.error(yylloc, 'TLDR003');
+    if (yytext.match(/^[a-z]/)) {
+      yy.error(yylloc, 'TLDR003');
+    }
     var punctuation = this.matches[2];
     if (punctuation !== '.') {
       yy.error(yylloc, 'TLDR004');
     }
-    if (this.matches[3] !== '') yy.error(yylloc, 'TLDR014');
-    if (punctuation.match(/[,;]/)) 
+    if (this.matches[3] !== '') {
+      yy.error(yylloc, 'TLDR014');
+    }
+    if (punctuation.match(/[,;]/)) {
       console.warn('Description ends in\'', punctuation, '\'. Consider writing your sentence on one line.');
+    }
     this.checkNewline(this.matches[4], yylloc);
     return 'DESCRIPTION_LINE';
   } else {
