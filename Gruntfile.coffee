@@ -20,10 +20,10 @@ module.exports = (grunt) ->
             activity: yes
       specs:
         specs: [
-          'specs/**'
+          'specs/**.spec.js'
         ]
         helpers: [
-          'specs/**'
+          'specs/tldr-lint-helper.js'
         ]
 
     exec:
