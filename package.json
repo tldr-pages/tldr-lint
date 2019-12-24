@@ -2,7 +2,7 @@
   "name": "tldr-lint",
   "version": "0.0.7",
   "description": "A linting tool to validate tldr pages",
-  "repository": "rubenvereecken/tldr-lint",
+  "repository": "tldr-pages/tldr-lint",
   "scripts": {
     "jison": "grunt exec:jison",
     "test": "grunt test"
