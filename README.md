@@ -1,6 +1,6 @@
 # tldr-lint
 
-[![NPM version][npm-image]][npm-url]
+[![npm version][npm-image]][npm-url]
 [![Travs CI Build Status][travis-image]][travis-url]
 [![David DM Dependency Status][dep-image]][dep-url]
 [![Gitter chat][gitter-image]][gitter-url]
@@ -8,27 +8,31 @@
 `tldr-lint` is a linting tool for validating [tldr](https://github.com/tldr-pages/tldr) pages.
 It can also format your pages for you!
 
-# Usage
+
+## Usage
+
 It's really simple.
 
 ```
-  Usage: tldr-lint [options] <file|dir>
+Usage: tldr-lint [options] <file|dir>
 
-  Options:
-
-    -h, --help           output usage information
-    -V, --version        output the version number
-    -f, --format         also attempt formatting (to stdout, or as specified by -o)
-    -o, --output <file>  output formatted file
-    -v, --verbose        print verbose output (for debugging)
+Options:
+  -V, --version        output the version number
+  -f, --format         also attempt formatting (to stdout, or as specified by -o)
+  -o, --output <file>  output to formatted file
+  -i, --in-place       formats in place
+  -v, --verbose        print verbose output
+  -h, --help           output usage information
 ```
 
 
-# Linter Errors
+## Linter errors
+
 There's a bunch of them. Couldn't bother writing them down just yet.
 They're all in `lib/tldr-lint.js` though if you feel inclined.
 
-## TODO
+## To-do
+
 - Assert file has .md extension
 - Assert file name is same as page title
 
