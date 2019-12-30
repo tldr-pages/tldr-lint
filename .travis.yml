@@ -1,8 +1,10 @@
+sudo: false
 language: node_js
+os:
+  - "osx"
+  - "linux"
 node_js:
-    - 'stable'
-    - '4.1'
-    - '4.0'
-    - '0.12'
-    - '0.11'
-    - '0.10'
+  - "10"
+  - "11"
+  - "12"
+  - "stable"
