@@ -1,11 +1,8 @@
 {
   "name": "tldr-lint",
   "version": "0.0.7",
-  "description": "Linter for TLDR pages.",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/rubenvereecken/tldr-lint.git"
-  },
+  "description": "A linting tool to validate tldr pages",
+  "repository": "tldr-pages/tldr-lint",
   "scripts": {
     "jison": "grunt exec:jison",
     "test": "grunt test"
@@ -18,6 +15,7 @@
     "tldr",
     "pages",
     "lint",
+    "validate",
     "format"
   ],
   "author": {
