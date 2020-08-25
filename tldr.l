@@ -46,8 +46,8 @@ space [ \t]
   }
   if (this.matches[2] !== ' ') {
     yy.error(yylloc, 'TLDR002');
-  } 
-  return 'HASH'; 
+  }
+  return 'HASH';
 %}
 
 ([\>-])(\s*)
@@ -58,7 +58,7 @@ space [ \t]
   }
   if (this.matches[2] !== ' ') {
     yy.error(yylloc, 'TLDR002');
-  } 
+  }
   if (this.matches[1] == '>') {
     this.pushState('description');
     return 'GREATER_THAN';
@@ -114,7 +114,7 @@ space [ \t]
   if (this.topState() === 'example_description') {
     this.popState();
     yytext = this.matches[1];
-    if (!yytext.match(/^[[A-Z]/)) yy.error(yylloc, 'TLDR003');
+    if (!yytext.match(/^\[?[A-Z]/)) yy.error(yylloc, 'TLDR015');
     if (this.matches[2] !== ':') yy.error(yylloc, 'TLDR005');
     if (yytext.match(/(^[A-Za-z]{3,}ing )|(^[A-Za-z]+[^us]s )/)) {
       yy.error(yylloc, 'TLDR104');
@@ -201,7 +201,7 @@ space [ \t]
   var isdos = this.match.match(/\r\n/);
   if (isdos && this.match.length > 2 || !isdos && this.match.length > 1) {
     yy.error(yylloc, 'TLDR011');
-  } 
+  }
   this.checkNewline(this.match, yylloc);
   return 'NEWLINE';
 %}

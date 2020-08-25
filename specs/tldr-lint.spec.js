@@ -1,8 +1,4 @@
 var linter = require('../lib/tldr-lint.js');
-var fs = require('fs');
-var path = require('path');
-
-var page_dir = './pages';
 
 describe("TLDR conventions", function() {
   it("TLDR001\t" + linter.ERRORS.TLDR001, function() {
@@ -20,7 +16,7 @@ describe("TLDR conventions", function() {
   it("TLDR003\t" + linter.ERRORS.TLDR003, function() {
     var errors = lintFile('pages/003.md').errors;
     expect(containsOnlyErrors(errors, 'TLDR003')).toBeTruthy();
-    expect(errors.length).toBe(2);
+    expect(errors.length).toBe(1);
   });
 
   it("TLDR004\t" + linter.ERRORS.TLDR004, function() {
@@ -82,6 +78,12 @@ describe("TLDR conventions", function() {
     expect(containsOnlyErrors(errors, 'TLDR014')).toBeTruthy();
     expect(errors.length).toBe(3);
   });
+
+  it("TLDR015\t" + linter.ERRORS.TLDR015, function() {
+    var errors = lintFile('pages/015.md').errors;
+    expect(containsOnlyErrors(errors, 'TLDR015')).toBeTruthy();
+    expect(errors.length).toBe(2);
+  });
 });
 
 describe("Common TLDR formatting errors", function() {
@@ -125,6 +127,11 @@ describe("Common TLDR formatting errors", function() {
 describe("TLDR pages that are simply correct", function() {
   it("Multiple description lines", function() {
     var errors = lintFile('pages/descriptions.md').errors;
+    expect(errors.length).toBe(0);
+  });
+
+  it("Example starting with a bracket", function() {
+    var errors = lintFile('pages/bracket.md').errors;
     expect(errors.length).toBe(0);
   });
 
