@@ -82,7 +82,7 @@ describe("TLDR conventions", function() {
   it("TLDR015\t" + linter.ERRORS.TLDR015, function() {
     var errors = lintFile('pages/015.md').errors;
     expect(containsOnlyErrors(errors, 'TLDR015')).toBeTruthy();
-    expect(errors.length).toBe(2);
+    expect(errors.length).toBe(1);
   });
 });
 
