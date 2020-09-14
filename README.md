@@ -1,7 +1,7 @@
 # tldr-lint
 
 [![npm version][npm-image]][npm-url]
-[![Travs CI Build Status][travis-image]][travis-url]
+[![Build Status][github-actions-image]][github-actions-url]
 [![David DM Dependency Status][dep-image]][dep-url]
 [![Gitter chat][gitter-image]][gitter-url]
 
@@ -39,8 +39,8 @@ They're all in `lib/tldr-lint.js` though if you feel inclined.
 [npm-url]: https://www.npmjs.com/package/tldr-lint
 [npm-image]: https://img.shields.io/npm/v/tldr-lint.svg
 
-[travis-url]: https://travis-ci.org/tldr-pages/tldr-lint
-[travis-image]: https://travis-ci.org/tldr-pages/tldr-lint.svg?branch=master
+[github-actions-url]: https://github.com/tldr-pages/tldr-lint/actions
+[github-actions-image]: https://img.shields.io/github/workflow/status/tldr-pages/tldr-lint/Tests/master.svg
 
 [dep-url]: https://david-dm.org/tldr-pages/tldr-lint
 [dep-image]: https://david-dm.org/tldr-pages/tldr-lint.svg?theme=shields.io
