@@ -32,9 +32,9 @@
     "grunt-contrib-clean": "^0.7.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-exec": "^0.4.6",
-    "grunt-jasmine-nodejs": "^1.4.3",
-    "jasmine-core": "^2.4.1",
-    "jasmine-node": "^1.14.5",
+    "grunt-jasmine-nodejs": "^1.6.1",
+    "jasmine-core": "^3.6.0",
+    "jasmine-node": "^3.0.0",
     "jison": "^0.4.18"
   },
   "files": [
