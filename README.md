@@ -28,8 +28,31 @@ Options:
 
 ## Linter errors
 
-There's a bunch of them. Couldn't bother writing them down just yet.
-They're all in `lib/tldr-lint.js` though if you feel inclined.
+All of the errors can be found in [`lib/tldr-lint.js`](./lib/tldr-lint.js).
+
+Error Code  | Description
+:---------- | :-----------
+TLDR001     | File should contain no leading whitespace
+TLDR002     | A single space should precede a sentence
+TLDR003     | Descriptions should start with a capital letter
+TLDR004     | Command descriptions should end in a period
+TLDR005     | Example descriptions should end in a colon with no trailing characters
+TLDR006     | Command name and description should be separated by an empty line
+TLDR007     | Example descriptions should be surrounded by empty lines
+TLDR008     | File should contain no trailing whitespace
+TLDR009     | Page should contain a newline at end of file
+TLDR010     | Only Unix-style line endings allowed
+TLDR011     | Page never contains more than a single empty line
+TLDR012     | Page should contain no tabs
+TLDR013     | Title should be alphanumeric with dashes, underscores or spaces
+TLDR014     | Page should contain no trailing whitespace
+TLDR015     | Example descriptions should start with a capital letter
+TLDR101     | Command description probably not properly annotated
+TLDR102     | Example description probably not properly annotated
+TLDR103     | Command example is missing its closing backtick
+TLDR104     | Example descriptions should prefer infinitive tense (e.g. write) over present (e.g. writes) or gerund (e.g. writing)
+TLDR105     | There should be only one command per example
+TLDR106     | Page title should start with a hash (`#`)
 
 ## To-do
 
