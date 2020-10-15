@@ -9,8 +9,8 @@
 
 %%
 
-page      : title NEWLINE description examples
-          | title description examples          -> yy.error(@$, 'TLDR006')
+page      : title NEWLINE info examples
+          | title info examples          -> yy.error(@$, 'TLDR006')
           | title NEWLINE TEXT examples         -> yy.error(@$, 'TLDR101') || yy.addDescription($TEXT);
           ;
 
@@ -18,9 +18,19 @@ title     : HASH TITLE  -> yy.setTitle($TITLE)
           | TEXT        -> yy.error(@TEXT, 'TLDR106') || yy.setTitle($TEXT)
           ;
 
+info  : description
+      | description more_information
+      ;
+
 description   : GREATER_THAN DESCRIPTION_LINE -> yy.addDescription($DESCRIPTION_LINE)
               | description GREATER_THAN DESCRIPTION_LINE -> yy.addDescription($DESCRIPTION_LINE)
               ;
+
+more_information  : GREATER_THAN MORE_INFORMATION ANGLE_BRACKETED_URL END_MORE_INFORMATION_URL
+                    -> yy.addMoreInformation($ANGLE_BRACKETED_URL)
+                  | GREATER_THAN MORE_INFORMATION END_MORE_INFORMATION
+                    -> yy.error(@$, 'TLDR017') || yy.addDescription($MORE_INFORMATION + $END_MORE_INFORMATION.trim())
+                  ;
 
 examples  : %empty
           | examples example
