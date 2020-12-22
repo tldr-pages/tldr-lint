@@ -4,6 +4,7 @@
 %token EXAMPLE_DESCRIPTION
 %token COMMAND_TOKEN COMMAND_TEXT
 %token TEXT
+%token ANGLE_BRACKETED_URL INFORMATION_LINK END_INFORMATION_LINK_URL END_INFORMATION_LINK
 
 %start page
 
@@ -19,18 +20,18 @@ title     : HASH TITLE  -> yy.setTitle($TITLE)
           ;
 
 info  : description
-      | description more_information
+      | description information_link
       ;
 
 description   : GREATER_THAN DESCRIPTION_LINE -> yy.addDescription($DESCRIPTION_LINE)
               | description GREATER_THAN DESCRIPTION_LINE -> yy.addDescription($DESCRIPTION_LINE)
               ;
 
-more_information  : GREATER_THAN MORE_INFORMATION ANGLE_BRACKETED_URL END_MORE_INFORMATION_URL
-                    -> yy.addMoreInformation($ANGLE_BRACKETED_URL)
-                  | GREATER_THAN MORE_INFORMATION END_MORE_INFORMATION
-                    -> yy.error(@$, 'TLDR017') || yy.addDescription($MORE_INFORMATION + $END_MORE_INFORMATION.trim())
-                  | more_information GREATER_THAN MORE_INFORMATION ANGLE_BRACKETED_URL END_MORE_INFORMATION_URL
+information_link  : GREATER_THAN INFORMATION_LINK ANGLE_BRACKETED_URL END_INFORMATION_LINK_URL
+                    -> yy.addInformationLink($ANGLE_BRACKETED_URL)
+                  | GREATER_THAN INFORMATION_LINK END_INFORMATION_LINK
+                    -> yy.error(@$, 'TLDR017') || yy.addDescription($INFORMATION_LINK + $END_INFORMATION_LINK.trim())
+                  | information_link GREATER_THAN INFORMATION_LINK ANGLE_BRACKETED_URL END_INFORMATION_LINK_URL
                     -> yy.error(@$, 'TLDR018')
                   ;
 

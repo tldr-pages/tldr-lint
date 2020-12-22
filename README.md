@@ -46,9 +46,9 @@ TLDR012     | Page should contain no tabs
 TLDR013     | Title should be alphanumeric with dashes, underscores or spaces
 TLDR014     | Page should contain no trailing whitespace
 TLDR015     | Example descriptions should start with a capital letter
-TLDR016     | Homepage prefix should be spelled exactly `More information: `
-TLDR017     | Homepage URL should be surrounded with angle brackets
-TLDR018     | Page should only include a single Homepage URL
+TLDR016     | Label for information link should be spelled exactly `More information: `
+TLDR017     | Information link should be surrounded with angle brackets
+TLDR018     | Page should only include a single information link
 TLDR101     | Command description probably not properly annotated
 TLDR102     | Example description probably not properly annotated
 TLDR103     | Command example is missing its closing backtick
