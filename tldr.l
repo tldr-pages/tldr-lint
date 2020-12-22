@@ -68,7 +68,7 @@ space [ \t]
   }
 %}
 
-([Mm][Oo][Rr][Ee]\s+[Ii][Nn][Ff][Oo](?:[Rr][Mm][Aa][Tt][Ii][Oo][Nn])?\:?\s*)
+([Mm]ore\s+[Ii]nfo(?:rmation)?\:?\s*)
 %{
   if (this.topState() !== 'description') {
     this.reject();
