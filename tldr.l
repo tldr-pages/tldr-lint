@@ -68,14 +68,13 @@ space [ \t]
   }
 %}
 
-([Mm]ore\s+information\:?\s*)
+([Mm][Oo][Rr][Ee]\s+[Ii][Nn][Ff][Oo](?:[Rr][Mm][Aa][Tt][Ii][Oo][Nn])?\:?\s*)
 %{
   if (this.topState() !== 'description') {
     this.reject();
     return;
   }
   if (this.matches[1] !== 'More information: ') {
-    console.log(this.matches[1])
     yy.error(yylloc, 'TLDR016');
   }
   this.popState();
