@@ -153,5 +153,3 @@ describe("TLDR pages that are simply correct", function() {
     expect(errors.length).toBe(0);
   });
 });
-
-
