@@ -4,7 +4,7 @@
   "description": "A linting tool to validate tldr pages",
   "repository": "tldr-pages/tldr-lint",
   "scripts": {
-    "jison": "grunt exec:jison",
+    "jison": "jison tldr.yy tldr.l -o lib/tldr-parser.js",
     "test": "grunt test"
   },
   "bin": {
@@ -29,7 +29,6 @@
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-cli": "^0.1.13",
-    "grunt-contrib-clean": "^0.7.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-exec": "^0.4.6",
     "grunt-jasmine-nodejs": "^1.6.1",

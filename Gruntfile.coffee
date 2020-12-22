@@ -2,9 +2,6 @@ module.exports = (grunt) ->
   grunt.initConfig
     pkg: grunt.file.readJSON 'package.json'
 
-    clean:
-      jison: ["lib/tldr-parser.js"]
-
     jasmine_nodejs:
       options:
 #        specNameSuffix: 'spec.js'
@@ -26,9 +23,6 @@ module.exports = (grunt) ->
           'specs/tldr-lint-helper.js'
         ]
 
-    exec:
-      jison: 'jison tldr.yy tldr.l -o lib/tldr-parser.js'
-
     watch:
       jison:
         files: [
@@ -47,13 +41,11 @@ module.exports = (grunt) ->
         ]
         tasks: ['jasmine_nodejs']
 
-    grunt.registerTask 'default', ['clean', 'exec:jison']
     grunt.registerTask 'test', 'jasmine_nodejs'
     grunt.registerTask 'dev', ['default', 'test', 'watch']
     grunt.loadNpmTasks lib for lib in gruntLibs
 
 gruntLibs = [
-  'grunt-contrib-clean'
   'grunt-contrib-watch'
   'grunt-exec'
   'grunt-jasmine-nodejs'
