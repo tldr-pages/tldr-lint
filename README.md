@@ -68,10 +68,10 @@ TLDR106     | Page title should start with a hash (`#`)
 [github-actions-image]: https://img.shields.io/github/workflow/status/tldr-pages/tldr-lint/Tests/master.svg
 
 [dep-url]: https://david-dm.org/tldr-pages/tldr-lint
-[dep-image]: https://david-dm.org/tldr-pages/tldr-lint.svg?theme=shields.io
+[dep-image]: https://img.shields.io/david/tldr-pages/tldr-lint.svg
 
 [dev-dep-url]: https://david-dm.org/tldr-pages/tldr-lint#info=devDependencies
-[dev-dep-image]: https://david-dm.org/tldr-pages/tldr-lint/dev-status.svg?theme=shields.io
+[dev-dep-image]: https://img.shields.io/david/dev/tldr-pages/tldr-lint.svg
 
 [gitter-url]: https://gitter.im/tldr-pages/tldr
-[gitter-image]: https://badges.gitter.im/tldr-pages/tldr.png
+[gitter-image]: https://img.shields.io/gitter/room/tldr-pages/tldr.svg
