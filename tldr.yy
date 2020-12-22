@@ -30,6 +30,8 @@ more_information  : GREATER_THAN MORE_INFORMATION ANGLE_BRACKETED_URL END_MORE_I
                     -> yy.addMoreInformation($ANGLE_BRACKETED_URL)
                   | GREATER_THAN MORE_INFORMATION END_MORE_INFORMATION
                     -> yy.error(@$, 'TLDR017') || yy.addDescription($MORE_INFORMATION + $END_MORE_INFORMATION.trim())
+                  | more_information GREATER_THAN MORE_INFORMATION ANGLE_BRACKETED_URL END_MORE_INFORMATION_URL
+                    -> yy.error(@$, 'TLDR018')
                   ;
 
 examples  : %empty
