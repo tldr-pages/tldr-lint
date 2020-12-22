@@ -68,6 +68,32 @@ space [ \t]
   }
 %}
 
+([Mm]ore\s+information\:?\s*)
+%{
+  if (this.topState() !== 'description') {
+    this.reject();
+    return;
+  }
+  if (this.matches[1] !== 'More information: ') {
+    console.log(this.matches[1])
+    yy.error(yylloc, 'TLDR016');
+  }
+  this.popState();
+  this.pushState('more_information');
+  return 'MORE_INFORMATION';
+%}
+
+(\<https?\:\/\/[^\s\>]*\>)
+%{
+  if (this.topState() !== 'more_information') {
+    this.reject();
+    return;
+  }
+  this.popState();
+  this.pushState('more_information_url');
+  return 'ANGLE_BRACKETED_URL';
+%}
+
 // All regexes below are actually about the same, but it's better organized
 // this way around.
 (.+){eol}
@@ -78,6 +104,15 @@ space [ \t]
     this.checkNewline(this.matches[2], yylloc);
     this.popState();
     return 'TITLE';
+  } else if (this.topState() === "more_information_url") {
+    if (this.matches[1] != '.') yy.error(yylloc, 'TLDR004');
+    this.checkNewline(this.matches[2], yylloc);
+    this.popState();
+    return 'END_MORE_INFORMATION_URL';
+  } else if (this.topState() === "more_information") {
+    this.checkNewline(this.matches[2], yylloc);
+    this.popState();
+    return 'END_MORE_INFORMATION';
   } else {
     this.reject();
   }
