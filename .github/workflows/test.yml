@@ -42,3 +42,5 @@ jobs:
 
     - run: npm i
     - run: npm run test
+      env:
+        FORCE_COLOR: true
