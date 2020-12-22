@@ -1,0 +1,11 @@
+{
+    "spec_dir": "specs",
+    "spec_files": [
+        "**/*.spec.js"
+    ],
+    "helpers": [
+        "tldr-lint-helper.js"
+    ],
+    "stopSpecOnExpectationFailure": false,
+    "random": false
+}
