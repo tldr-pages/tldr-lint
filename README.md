@@ -24,7 +24,6 @@ Options:
   -h, --help           output usage information
 ```
 
-
 ## Linter errors
 
 All of the errors can be found in [`lib/tldr-lint.js`](./lib/tldr-lint.js).
@@ -56,11 +55,6 @@ TLDR103     | Command example is missing its closing backtick
 TLDR104     | Example descriptions should prefer infinitive tense (e.g. write) over present (e.g. writes) or gerund (e.g. writing)
 TLDR105     | There should be only one command per example
 TLDR106     | Page title should start with a hash (`#`)
-
-## To-do
-
-- Assert file has .md extension
-- Assert file name is same as page title
 
 [npm-url]: https://www.npmjs.com/package/tldr-lint
 [npm-image]: https://img.shields.io/npm/v/tldr-lint.svg
