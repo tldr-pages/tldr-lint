@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com).
 
+## [v0.0.9 - 2020-12-23](https://github.com/tldr-pages/tldr-lint/compare/v0.0.8...v0.0.9)
+
+### Added
+- Add rule `TLDR016` ([#20](https://github.com/tldr-pages/tldr-lint/pull/20))
+- Add rule `TLDR017` ([#20](https://github.com/tldr-pages/tldr-lint/pull/20))
+- Add rule `TLDR018` ([#22](https://github.com/tldr-pages/tldr-lint/pull/22))
+- Add rule `TLDR019` ([#23](https://github.com/tldr-pages/tldr-lint/pull/23))
+
+### Changed
+- Replace Grunt with npm scripts locally ([#21](https://github.com/tldr-pages/tldr-lint/pull/21))
+- Update CI to always use colour output ([#24](https://github.com/tldr-pages/tldr-lint/pull/24))
+- Remove TODOs from the README into issues ([#27](https://github.com/tldr-pages/tldr-lint/pull/27))
+- Update Node versions in CI ([#28](https://github.com/tldr-pages/tldr-lint/pull/28))
+
 ## [v0.0.8 - 2020-10-02](https://github.com/tldr-pages/tldr-lint/compare/v0.0.7...v0.0.8)
 
 ### Added
