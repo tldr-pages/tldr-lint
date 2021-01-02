@@ -158,10 +158,4 @@ describe("TLDR pages that are simply correct", function() {
     var errors = lintFile('pages/bracket.md').errors;
     expect(errors.length).toBe(0);
   });
-
-  // deprecated
-  xit("Multiple example lines", function() {
-    var errors = lintFile('pages/examples.md').errors;
-    expect(errors.length).toBe(0);
-  });
 });
