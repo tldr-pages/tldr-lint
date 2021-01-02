@@ -5,8 +5,7 @@ var path = require('path');
 var page_dir = './pages';
 
 lintFile = function(file) {
-  var page = fs.readFileSync(path.join(__dirname, file), 'utf8');
-  return linter.process(page);
+  return linter.processFile(path.join(__dirname, file));
 };
 
 containsErrors = function(errors, expected) {

@@ -1,4 +1,4 @@
-# tar
+# bracket
 
 > Archiving utility.
 > Often combined with a compression method, such as gzip or bzip.

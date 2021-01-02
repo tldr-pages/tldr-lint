@@ -1,4 +1,4 @@
-# du
+# descriptions
 
 > Estimate file space usage.
 > This just goes on.

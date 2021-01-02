@@ -69,8 +69,8 @@ describe("TLDR conventions", function() {
 
   it("TLDR013\t" + linter.ERRORS.TLDR013, function() {
     var errors = lintFile('pages/013.md').errors;
-    expect(containsOnlyErrors(errors, 'TLDR013')).toBeTruthy();
-    expect(errors.length).toBe(1);
+    expect(containsOnlyErrors(errors, ['TLDR013', 'TLDR108'])).toBeTruthy();
+    expect(errors.length).toBe(2);
   });
 
   it("TLDR014\t" + linter.ERRORS.TLDR014, function() {
@@ -146,6 +146,18 @@ describe("Common TLDR formatting errors", function() {
     expect(containsOnlyErrors(errors, 'TLDR106')).toBeTruthy();
     expect(errors.length).toBe(1);
   });
+
+  it("TLDR107\t" + linter.ERRORS.TLDR107, function() {
+    var errors = lintFile('pages/107').errors;
+    expect(containsOnlyErrors(errors, 'TLDR107')).toBeTruthy();
+    expect(errors.length).toBe(1);
+  });
+
+  it("TLDR108\t" + linter.ERRORS.TLDR108, function() {
+    var errors = lintFile('pages/108.md').errors;
+    expect(containsOnlyErrors(errors, 'TLDR108')).toBeTruthy();
+    expect(errors.length).toBe(1);
+  })
 });
 
 describe("TLDR pages that are simply correct", function() {
