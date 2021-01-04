@@ -95,21 +95,24 @@ space [ \t]
 
 // All regexes below are actually about the same, but it's better organized
 // this way around.
-(.+){eol}
+(.+?)([ ]*){eol}
 %{
   if (this.topState() === "title") {
     yytext = this.matches[1];
     if (this.matches[1].match(/([^A-Za-z0-9_\. -])|(\.$)/)) yy.error(yylloc, 'TLDR013');
-    this.checkNewline(this.matches[2], yylloc);
+    this.checkTrailingWhitespace(this.matches[2], yylloc);
+    this.checkNewline(this.matches[3], yylloc);
     this.popState();
     return 'TITLE';
   } else if (this.topState() === 'information_link_url') {
     if (this.matches[1] != '.') yy.error(yylloc, 'TLDR004');
-    this.checkNewline(this.matches[2], yylloc);
+    this.checkTrailingWhitespace(this.matches[2], yylloc);
+    this.checkNewline(this.matches[3], yylloc);
     this.popState();
     return 'END_INFORMATION_LINK_URL';
   } else if (this.topState() === 'information_link') {
-    this.checkNewline(this.matches[2], yylloc);
+    this.checkTrailingWhitespace(this.matches[2], yylloc);
+    this.checkNewline(this.matches[3], yylloc);
     this.popState();
     return 'END_INFORMATION_LINK';
   } else {
@@ -129,12 +132,10 @@ space [ \t]
     if (punctuation !== '.') {
       yy.error(yylloc, 'TLDR004');
     }
-    if (this.matches[3] !== '') {
-      yy.error(yylloc, 'TLDR014');
-    }
     if (punctuation.match(/[,;]/)) {
       console.warn('Description ends in\'', punctuation, '\'. Consider writing your sentence on one line.');
     }
+    this.checkTrailingWhitespace(this.matches[3], yylloc);
     this.checkNewline(this.matches[4], yylloc);
     return 'DESCRIPTION_LINE';
   } else {
@@ -154,7 +155,7 @@ space [ \t]
       yy.error(yylloc, 'TLDR104');
     }
     // Check if any sneaky spaces have been caught
-    if (this.matches[3] !== '') yy.error(yylloc, 'TLDR014');
+    this.checkTrailingWhitespace(this.matches[3], yylloc);
     this.checkNewline(this.matches[3], yylloc);
     return 'EXAMPLE_DESCRIPTION';
   } else {
