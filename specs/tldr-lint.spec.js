@@ -69,7 +69,7 @@ describe("TLDR conventions", function() {
 
   it("TLDR013\t" + linter.ERRORS.TLDR013, function() {
     var errors = lintFile('pages/013.md').errors;
-    expect(containsOnlyErrors(errors, ['TLDR013', 'TLDR108'])).toBeTruthy();
+    expect(containsOnlyErrors(errors, ['TLDR013', 'TLDR109'])).toBeTruthy();
     expect(errors.length).toBe(2);
   });
 
@@ -154,10 +154,16 @@ describe("Common TLDR formatting errors", function() {
   });
 
   it("TLDR108\t" + linter.ERRORS.TLDR108, function() {
-    var errors = lintFile('pages/108.md').errors;
+    var errors = lintFile('pages/108C.md').errors;
     expect(containsOnlyErrors(errors, 'TLDR108')).toBeTruthy();
     expect(errors.length).toBe(1);
-  })
+  });
+
+  it("TLDR109\t" + linter.ERRORS.TLDR109, function() {
+    var errors = lintFile('pages/109.md').errors;
+    expect(containsOnlyErrors(errors, 'TLDR109')).toBeTruthy();
+    expect(errors.length).toBe(1);
+  });
 });
 
 describe("TLDR pages that are simply correct", function() {
@@ -168,6 +174,11 @@ describe("TLDR pages that are simply correct", function() {
 
   it("Example starting with a bracket", function() {
     var errors = lintFile('pages/bracket.md').errors;
+    expect(errors.length).toBe(0);
+  });
+
+  it("Page with capitalized title", function() {
+    var errors = lintFile('pages/capital-title.md').errors;
     expect(errors.length).toBe(0);
   });
 
