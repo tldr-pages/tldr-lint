@@ -76,7 +76,7 @@ describe("TLDR conventions", function() {
   it("TLDR014\t" + linter.ERRORS.TLDR014, function() {
     var errors = lintFile('pages/014.md').errors;
     expect(containsOnlyErrors(errors, 'TLDR014')).toBeTruthy();
-    expect(errors.length).toBe(3);
+    expect(errors.length).toBe(5);
   });
 
   it("TLDR015\t" + linter.ERRORS.TLDR015, function() {
@@ -179,12 +179,6 @@ describe("TLDR pages that are simply correct", function() {
 
   it("Page with capitalized title", function() {
     var errors = lintFile('pages/capital-title.md').errors;
-    expect(errors.length).toBe(0);
-  });
-
-  // deprecated
-  xit("Multiple example lines", function() {
-    var errors = lintFile('pages/examples.md').errors;
     expect(errors.length).toBe(0);
   });
 });
