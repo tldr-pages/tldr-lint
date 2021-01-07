@@ -170,4 +170,9 @@ describe("TLDR pages that are simply correct", function() {
     var errors = lintFile('pages/bracket.md').errors;
     expect(errors.length).toBe(0);
   });
+
+  it("Different case filename and capitalized title", function() {
+    var errors = lintFile('pages/capital-title.md').errors;
+    expect(errors.length).toBe(0);
+  });
 });
