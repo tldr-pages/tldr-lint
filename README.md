@@ -55,6 +55,7 @@ TLDR103     | Command example is missing its closing backtick
 TLDR104     | Example descriptions should prefer infinitive tense (e.g. write) over present (e.g. writes) or gerund (e.g. writing)
 TLDR105     | There should be only one command per example
 TLDR106     | Page title should start with a hash (`#`)
+TLDR107     | File name should end with .md extension
 
 [npm-url]: https://www.npmjs.com/package/tldr-lint
 [npm-image]: https://img.shields.io/npm/v/tldr-lint.svg
