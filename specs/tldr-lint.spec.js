@@ -150,17 +150,17 @@ describe("Common TLDR formatting errors", function() {
 
 describe("TLDR pages that are simply correct", function() {
   it("Multiple description lines", function() {
-    var errors = lintFile('pages/descriptions.md').errors;
+    var errors = lintFile('pages/passing/descriptions.md').errors;
     expect(errors.length).toBe(0);
   });
 
   it("Example starting with a bracket", function() {
-    var errors = lintFile('pages/bracket.md').errors;
+    var errors = lintFile('pages/passing/bracket.md').errors;
     expect(errors.length).toBe(0);
   });
 
   it("Page filename and title includes + symbol", function() {
-    var errors = lintFile('pages/title++.md').errors;
+    var errors = lintFile('pages/passing/title++.md').errors;
     expect(errors.length).toBe(0);
   });
 });
