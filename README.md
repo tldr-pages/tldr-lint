@@ -61,7 +61,7 @@ TLDR107     | File name should end with `.md` extension
 [npm-image]: https://img.shields.io/npm/v/tldr-lint.svg
 
 [github-actions-url]: https://github.com/tldr-pages/tldr-lint/actions
-[github-actions-image]: https://img.shields.io/github/workflow/status/tldr-pages/tldr-lint/Tests/master.svg
+[github-actions-image]: https://img.shields.io/github/workflow/status/tldr-pages/tldr-lint/Tests/main.svg
 
 [dep-url]: https://david-dm.org/tldr-pages/tldr-lint
 [dep-image]: https://img.shields.io/david/tldr-pages/tldr-lint.svg
