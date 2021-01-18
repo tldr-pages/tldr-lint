@@ -56,6 +56,7 @@ TLDR104     | Example descriptions should prefer infinitive tense (e.g. write) o
 TLDR105     | There should be only one command per example
 TLDR106     | Page title should start with a hash (`#`)
 TLDR107     | File name should end with `.md` extension
+TLDR108     | File name should not contain whitespace
 
 [npm-url]: https://www.npmjs.com/package/tldr-lint
 [npm-image]: https://img.shields.io/npm/v/tldr-lint.svg
