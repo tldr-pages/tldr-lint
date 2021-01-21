@@ -31,8 +31,8 @@
   },
   "devDependencies": {
     "concurrently": "^5.3.0",
+    "jasmine": "^3.6.4",
     "jasmine-console-reporter": "^3.1.0",
-    "jasmine": "^3.6.0",
     "jison": "^0.4.18",
     "onchange": "^7.1.0"
   },
