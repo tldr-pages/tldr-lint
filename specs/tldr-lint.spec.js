@@ -148,13 +148,13 @@ describe("Common TLDR formatting errors", function() {
   });
 
   it("TLDR107\t" + linter.ERRORS.TLDR107, function() {
-    var errors = lintFile('pages/107').errors;
+    var errors = lintFile('pages/failing/107').errors;
     expect(containsOnlyErrors(errors, 'TLDR107')).toBeTruthy();
     expect(errors.length).toBe(1);
   });
 
   it("TLDR108\t" + linter.ERRORS.TLDR108, function () {
-    var errors = lintFile('pages/108 .md').errors;
+    var errors = lintFile('pages/failing/108 .md').errors;
     expect(containsOnlyErrors(errors, 'TLDR108')).toBeTruthy();
     expect(errors.length).toBe(1);
   });
