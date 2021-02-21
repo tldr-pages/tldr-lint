@@ -15,7 +15,7 @@ page      : title NEWLINE info examples
           | title NEWLINE TEXT examples         -> yy.error(@$, 'TLDR101') || yy.addDescription($TEXT);
           ;
 
-title     : HASH TITLE  -> yy.setTitle($TITLE) 
+title     : HASH TITLE  -> yy.setTitle($TITLE)
           | TEXT        -> yy.error(@TEXT, 'TLDR106') || yy.setTitle($TEXT)
           ;
 
@@ -40,17 +40,17 @@ examples  : %empty
           ;
 
 example   : maybe_newline example_description maybe_newline example_commands
-            { 
+            {
               yy.addExample($example_description, $example_commands);
               // Just use the description line's location, easy to find
-              if (!$maybe_newline1) 
+              if (!$maybe_newline1)
                 yy.error(@example_description, 'TLDR007');
-              if (!$maybe_newline2) 
+              if (!$maybe_newline2)
                 yy.error(@example_commands, 'TLDR007');
             }
           ;
 
-maybe_newline   : %empty 
+maybe_newline   : %empty
                 | NEWLINE
                 ;
 
