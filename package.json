@@ -5,6 +5,10 @@
   "repository": "tldr-pages/tldr-lint",
   "scripts": {
     "jison": "jison tldr.yy tldr.l -o lib/tldr-parser.js",
+    "lint": "eslint lib",
+    "prepublishOnly": "pinst --disable",
+    "postinstall": "husky install",
+    "postpublish": "pinst --enable",
     "test": "jasmine --config=jasmine.json --reporter=jasmine-console-reporter",
     "watch": "concurrently 'npm run watch:jison' 'npm run watch:specs'",
     "watch:jison": "onchange '*.l' '*.yy' -- npm run jison",
@@ -31,10 +35,13 @@
   },
   "devDependencies": {
     "concurrently": "^6.0.0",
+    "eslint": "^7.20.0",
+    "husky": "^5.1.1",
     "jasmine": "^3.6.4",
     "jasmine-console-reporter": "^3.1.0",
     "jison": "^0.4.18",
-    "onchange": "^7.1.0"
+    "onchange": "^7.1.0",
+    "pinst": "^2.1.6"
   },
   "files": [
     "lib/",
