@@ -44,9 +44,6 @@
     "pinst": "^2.1.6"
   },
   "files": [
-    "lib/",
-    "specs/",
-    "tldr.l",
-    "tldr.yy"
+    "lib/"
   ]
 }
