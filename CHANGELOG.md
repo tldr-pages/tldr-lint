@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com).
 
+## [v0.0.10 - 2021-03-01](https://github.com/tldr-pages/tldr-lint/compare/v0.0.9...v0.0.10)
+
+### Added
+- Add rule `TLDR107` ([#34](https://github.com/tldr-pages/tldr-lint/pull/34))
+- Add rule `TLDR108` ([#39](https://github.com/tldr-pages/tldr-lint/pull/39))
+- Add rule `TLDR109` ([#42](https://github.com/tldr-pages/tldr-lint/pull/42))
+
+### Changed
+- Allow pages with `+` character in title ([#33](https://github.com/tldr-pages/tldr-lint/pull/33))
+- Allow pages with `[` chacacter in title ([#44](https://github.com/tldr-pages/tldr-lint/pull/44))
+- Add ESLint for JS linting ([#50](https://github.com/tldr-pages/tldr-lint/pull/50))
+
 ## [v0.0.9 - 2020-12-23](https://github.com/tldr-pages/tldr-lint/compare/v0.0.8...v0.0.9)
 
 ### Added

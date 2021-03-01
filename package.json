@@ -1,6 +1,6 @@
 {
   "name": "tldr-lint",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "A linting tool to validate tldr pages",
   "repository": "tldr-pages/tldr-lint",
   "scripts": {
