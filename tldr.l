@@ -151,7 +151,7 @@ space [ \t]
     yytext = this.matches[1];
     if (!yytext.match(/^[A-Z[]/)) yy.error(yylloc, 'TLDR015');
     if (this.matches[2] !== ':') yy.error(yylloc, 'TLDR005');
-    if (yytext.match(/(^[A-Za-z]{3,}ing )|(^[A-Za-z]+[^us]s )/)) {
+    if (yytext.match(/(^[A-Za-z]{3,}ing )|(^[A-Za-z]+[^usy]s )/)) {
       yy.error(yylloc, 'TLDR104');
     }
     // Check if any sneaky spaces have been caught
