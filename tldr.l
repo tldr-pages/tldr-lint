@@ -152,7 +152,7 @@ space [ \t]
     if (!yytext.match(/^[A-Z[]/)) yy.error(yylloc, 'TLDR015');
     if (this.matches[2] !== ':') yy.error(yylloc, 'TLDR005');
     // Try to ensure that verbs at the beginning of the description are in the infinitive tense
-    // 1. Any word at the start of a sentence that ends with "ing" and is 6 or more characters long is likely a verb in the gerund (e.g. executing, writing)
+    // 1. Any word at the start of a sentence that ends with "ing" and is 6 or more characters long (e.g. executing, writing) is likely a verb in the gerund
     // 2. Any word at the start of a sentence that doesn't end with "us", "ss", or "ys" (e.g. superfluous, success, always) is likely a verb in the present tense
     if (yytext.match(/(^[A-Za-z]{3,}ing )|(^[A-Za-z]+[^usy]s )/)) {
       yy.error(yylloc, 'TLDR104');
