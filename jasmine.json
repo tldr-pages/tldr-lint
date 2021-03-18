@@ -4,7 +4,6 @@
         "**/*.spec.js"
     ],
     "helpers": [
-        "tldr-lint-helper.js"
     ],
     "stopSpecOnExpectationFailure": false,
     "random": false

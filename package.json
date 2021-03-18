@@ -5,7 +5,7 @@
   "repository": "tldr-pages/tldr-lint",
   "scripts": {
     "jison": "jison tldr.yy tldr.l -o lib/tldr-parser.js",
-    "lint": "eslint lib",
+    "lint": "eslint lib specs",
     "prepublishOnly": "pinst --disable",
     "postinstall": "husky install",
     "postpublish": "pinst --enable",
