@@ -1,8 +1,8 @@
 var linter = require('../lib/tldr-lint.js');
 var path = require('path');
 
-var lintFile = function(file) {
-  return linter.processFile(path.join(__dirname, file));
+var lintFile = function(file, ignoreErrors) {
+  return linter.processFile(path.join(__dirname, file), false, false, ignoreErrors);
 };
 
 var containsErrors = function(errors, expected) {

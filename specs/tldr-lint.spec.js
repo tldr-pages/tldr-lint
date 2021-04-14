@@ -185,3 +185,11 @@ describe('TLDR pages that are simply correct', function() {
     expect(errors.length).toBe(0);
   });
 });
+
+describe('ignore errors', function() {
+  it('ignore TLDR014', function() {
+    var errors = lintFile('pages/failing/004.md', 'TLDR014').errors;
+    expect(containsOnlyErrors(errors, 'TLDR004')).toBeTruthy();
+    expect(errors.length).toBe(2);
+  });
+});
