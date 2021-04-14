@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com).
 
+## [v0.0.11 - 2021-04-14](https://github.com/tldr-pages/tldr-lint/compare/v0.0.10...v0.0.11)
+
+### Added
+- Add CLI flag to ignore specific errors ([#69](https://github.com/tldr-pages/tldr-lint/pull/69))
+
+### Changed
+- Allow words at the beginning of example descriptions to end with "ys" ([#60](https://github.com/tldr-pages/tldr-lint/pull/60))
+- Print out filename above parse errors ([#62](https://github.com/tldr-pages/tldr-lint/pull/62))
+
+### Fixed
+- Fix passing options to CLI ([#59](https://github.com/tldr-pages/tldr-lint/pull/59))
+
 ## [v0.0.10 - 2021-03-01](https://github.com/tldr-pages/tldr-lint/compare/v0.0.9...v0.0.10)
 
 ### Added
