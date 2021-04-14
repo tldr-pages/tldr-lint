@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com).
 - Add CLI flag to ignore specific errors ([#69](https://github.com/tldr-pages/tldr-lint/pull/69))
 
 ### Changed
+- Allow words at the beginning of descriptions to end with "ys" ([#60](https://github.com/tldr-pages/tldr-lint/pull/60))
 - Print out filename above parse errors ([#62](https://github.com/tldr-pages/tldr-lint/pull/62))
 
 ### Fixed
