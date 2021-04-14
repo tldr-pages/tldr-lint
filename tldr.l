@@ -151,7 +151,10 @@ space [ \t]
     yytext = this.matches[1];
     if (!yytext.match(/^[A-Z[]/)) yy.error(yylloc, 'TLDR015');
     if (this.matches[2] !== ':') yy.error(yylloc, 'TLDR005');
-    if (yytext.match(/(^[A-Za-z]{3,}ing )|(^[A-Za-z]+[^us]s )/)) {
+    // Try to ensure that verbs at the beginning of the description are in the infinitive tense
+    // 1. Any word at the start of a sentence that ends with "ing" and is 6 or more characters long (e.g. executing, writing) is likely a verb in the gerund
+    // 2. Any word at the start of a sentence that doesn't end with "us", "ss", or "ys" (e.g. superfluous, success, always) is likely a verb in the present tense
+    if (yytext.match(/(^[A-Za-z]{3,}ing )|(^[A-Za-z]+[^usy]s )/)) {
       yy.error(yylloc, 'TLDR104');
     }
     // Check if any sneaky spaces have been caught
