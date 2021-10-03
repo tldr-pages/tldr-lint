@@ -180,6 +180,11 @@ describe('TLDR pages that are simply correct', function() {
     expect(errors.length).toBe(0);
   });
 
+  it('Example starting with an upper cased unicode character', function() {
+    var errors = lintFile('pages/passing/special-characters.md').errors;
+    expect(errors.length).toBe(0);
+  });
+
   it('Page filename and title includes + symbol', function() {
     var errors = lintFile('pages/passing/title++.md').errors;
     expect(errors.length).toBe(0);

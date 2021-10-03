@@ -149,7 +149,7 @@ space [ \t]
   if (this.topState() === 'example_description') {
     this.popState();
     yytext = this.matches[1];
-    if (!yytext.match(/^[A-Z[]/)) yy.error(yylloc, 'TLDR015');
+    if (!yytext.match(/^[\p{Lu}\[]/u)) yy.error(yylloc, 'TLDR015');
     if (this.matches[2] !== ':') yy.error(yylloc, 'TLDR005');
     // Try to ensure that verbs at the beginning of the description are in the infinitive tense
     // 1. Any word at the start of a sentence that ends with "ing" and is 6 or more characters long (e.g. executing, writing) is likely a verb in the gerund
