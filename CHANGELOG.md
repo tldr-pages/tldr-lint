@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com).
 
+## [v0.0.12 - 2021-10-04](https://github.com/tldr-pages/tldr-lint/compare/v0.0.11...v0.0.12)
+
+### Added
+- Allow special uppercased characters ([#101](https://github.com/tldr-pages/tldr-lint/pull/101))
+
+### Changed
+- Update to test against Node 16.x ([#90](https://github.com/tldr-pages/tldr-lint/pull/90))
+
 ## [v0.0.11 - 2021-04-14](https://github.com/tldr-pages/tldr-lint/compare/v0.0.10...v0.0.11)
 
 ### Added
