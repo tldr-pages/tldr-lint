@@ -189,6 +189,11 @@ describe('TLDR pages that are simply correct', function() {
     var errors = lintFile('pages/passing/title++.md').errors;
     expect(errors.length).toBe(0);
   });
+
+  it('Certain words are always written in lower case', function() {
+    var errors = lintFile('pages/passing/lower-case.md').errors;
+    expect(errors.length).toBe(0);
+  });
 });
 
 describe('ignore errors', function() {
