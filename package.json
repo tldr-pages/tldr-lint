@@ -27,6 +27,9 @@
     "name": "Ruben Vereecken",
     "email": "rubenvereecken@gmail.com"
   },
+  "engines": {
+    "node": ">=12"
+  },
   "license": "MIT",
   "dependencies": {
     "commander": "^8.1.0"
