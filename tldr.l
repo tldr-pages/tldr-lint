@@ -125,7 +125,8 @@ space [ \t]
   if (this.topState() === 'description') {
     this.popState();
     yytext = this.matches[1];
-    if (yytext.match(/^[a-z]/)) {
+    var exceptions = ['npm', 'pnpm'];
+    if (!exceptions.includes(yytext.replace(/ .*/,'')) && yytext.match(/^[a-z]/)) {
       yy.error(yylloc, 'TLDR003');
     }
     var punctuation = this.matches[2];
