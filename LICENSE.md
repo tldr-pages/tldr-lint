@@ -1,6 +1,8 @@
 The MIT License (MIT)
 
 Copyright (c) 2016 Ruben Vereecken
+Copyright (c) 2016-present The [tldr-pages team](https://github.com/orgs/tldr-pages/people)
+and [contributors](https://github.com/tldr-pages/tldr-lint/graphs/contributors)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
