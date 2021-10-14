@@ -1,6 +1,6 @@
 {
   "name": "tldr-lint",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "A linting tool to validate tldr pages",
   "repository": "tldr-pages/tldr-lint",
   "scripts": {
@@ -30,13 +30,16 @@
   "maintainers": {
     "name": "tldr-pages team"
   },
+  "engines": {
+    "node": ">=12"
+  },
   "license": "MIT",
   "dependencies": {
     "commander": "^8.1.0"
   },
   "devDependencies": {
     "concurrently": "^6.0.0",
-    "eslint": "^7.20.0",
+    "eslint": "^8.0.0",
     "husky": "^7.0.1",
     "jasmine": "^3.6.4",
     "jasmine-console-reporter": "^3.1.0",
