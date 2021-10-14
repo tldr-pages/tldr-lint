@@ -1,6 +1,6 @@
 The MIT License (MIT)
 
-Copyright (c) 2016 Ruben Vereecken
+Copyright (c) 2016 Ruben Vereecken  
 Copyright (c) 2016-present The [tldr-pages team](https://github.com/orgs/tldr-pages/people)
 and [contributors](https://github.com/tldr-pages/tldr-lint/graphs/contributors)
 
