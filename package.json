@@ -27,6 +27,9 @@
     "name": "Ruben Vereecken",
     "email": "rubenvereecken@gmail.com"
   },
+  "maintainers": {
+    "name": "tldr-pages team"
+  },
   "engines": {
     "node": ">=12"
   },
