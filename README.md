@@ -8,6 +8,14 @@
 `tldr-lint` is a linting tool for validating [tldr](https://github.com/tldr-pages/tldr) pages.
 It can also format your pages for you!
 
+## Installation
+
+`tldr-lint` and its alias `tldrl` can be installed via `npm`:
+
+```
+npm install --global tldr-lint
+```
+
 ## Usage
 
 It's really simple.
@@ -73,11 +81,3 @@ TLDR109     | File name should be lowercase
 
 [gitter-url]: https://gitter.im/tldr-pages/tldr
 [gitter-image]: https://img.shields.io/gitter/room/tldr-pages/tldr.svg
-
-## Installation
-
-`tldr-lint` and its alias `tldrl` can be installed via `npm`:
-
-```
-npm install --global tldr-lint
-```
