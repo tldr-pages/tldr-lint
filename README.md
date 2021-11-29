@@ -73,3 +73,11 @@ TLDR109     | File name should be lowercase
 
 [gitter-url]: https://gitter.im/tldr-pages/tldr
 [gitter-image]: https://img.shields.io/gitter/room/tldr-pages/tldr.svg
+
+## Installation
+
+`tldr-lint` and its alias `tldrl` can be installed via `npm`:
+
+```
+npm install --global tldr-lint
+```
