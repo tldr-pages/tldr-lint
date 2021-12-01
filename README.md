@@ -8,6 +8,14 @@
 `tldr-lint` is a linting tool for validating [tldr](https://github.com/tldr-pages/tldr) pages.
 It can also format your pages for you!
 
+## Installation
+
+`tldr-lint` and its alias `tldrl` can be installed via `npm`:
+
+```
+npm install --global tldr-lint
+```
+
 ## Usage
 
 It's really simple.
