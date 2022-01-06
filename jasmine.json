@@ -1,4 +1,5 @@
 {
+    "jsLoader": "require",
     "spec_dir": "specs",
     "spec_files": [
         "**/*.spec.js"
