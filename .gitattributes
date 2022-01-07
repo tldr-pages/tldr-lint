@@ -1,4 +1,4 @@
-* text=auto
+* text eol=lf
 
 # Required for TLDR010 (Only Unix-style line endings allowed)
 specs/pages/failing/010.md binary
