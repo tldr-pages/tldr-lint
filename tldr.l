@@ -134,7 +134,7 @@ space [ \t]
       yy.error(yylloc, 'TLDR004');
     }
     if (punctuation.match(/[,;]/)) {
-      console.warn('Description ends in\'', punctuation, '\'. Consider writing your sentence on one line.');
+      console.warn(`Description ends in \'${punctuation}\'. Consider writing your sentence on one line.`);
     }
     this.checkTrailingWhitespace(this.matches[3], yylloc);
     this.checkNewline(this.matches[4], yylloc);
