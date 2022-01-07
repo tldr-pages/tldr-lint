@@ -8,7 +8,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest] # todo: windows-latest
+        os: [ubuntu-latest, macos-latest]
         node-version: [12.x, 14.x, 16.x, 17.x]
 
     name: Node ${{ matrix.node-version }} - ${{ matrix.os }}
