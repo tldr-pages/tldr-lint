@@ -19,7 +19,13 @@ jobs:
       if: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.id == github.event.pull_request.base.repo.id }}
       with:
         access_token: ${{ github.token }}
-        
+
+    - name: Set Git to use LF on Windows
+      if: ${{ matrix.os }} == 'windows-latest'
+      run: |
+        git config --global core.autocrlf false
+        git config --global core.eol lf
+
     - uses: actions/checkout@v2
 
     - name: Use Node.js ${{ matrix.node-version }}
