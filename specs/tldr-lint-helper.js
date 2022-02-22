@@ -1,11 +1,11 @@
-var linter = require('../lib/tldr-lint.js');
-var path = require('path');
+const linter = require('../lib/tldr-lint.js');
+const path = require('path');
 
-var lintFile = function(file, ignoreErrors) {
+const lintFile = function(file, ignoreErrors) {
   return linter.processFile(path.join(__dirname, file), false, false, ignoreErrors);
 };
 
-var containsErrors = function(errors, expected) {
+const containsErrors = function(errors, expected) {
   if (errors.length === 0) return false;
   if (!(expected instanceof Array))
     expected = Array.prototype.splice.call(arguments, 1);
@@ -17,7 +17,7 @@ var containsErrors = function(errors, expected) {
   return true;
 };
 
-var containsOnlyErrors = function(errors, expected) {
+const containsOnlyErrors = function(errors, expected) {
   if (!(expected instanceof Array)) {
     expected = Array.prototype.splice.call(arguments, 1);
   }
@@ -28,8 +28,8 @@ var containsOnlyErrors = function(errors, expected) {
       return false;
     }
   });
-  for (var i = 0; i < errors.length; i++) {
-    var error = errors[i];
+  for (let i = 0; i < errors.length; i++) {
+    const error = errors[i];
     if (!expected.some(function(expectedCode) {
       return error.code === expectedCode;
     })) {

@@ -14,6 +14,7 @@
       "ignoreArrayIndexes": true,
       "detectObjects": true
     }],
+    "no-var": "error",
     "no-warning-comments": "warn",
     "handle-callback-err": "error"
   },
