@@ -2,7 +2,6 @@
 
 [![npm version][npm-image]][npm-url]
 [![Build Status][github-actions-image]][github-actions-url]
-[![David DM Dependency Status][dep-image]][dep-url]
 [![Gitter chat][gitter-image]][gitter-url]
 
 `tldr-lint` is a linting tool for validating [tldr](https://github.com/tldr-pages/tldr) pages.
