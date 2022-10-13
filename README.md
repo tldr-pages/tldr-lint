@@ -27,8 +27,10 @@ Options:
   -f, --format         also attempt formatting (to stdout, or as specified by -o)
   -o, --output <file>  output to formatted file
   -i, --in-place       formats in place
+  -t, --tabular        format errors in a tabular format
   -v, --verbose        print verbose output
-  -h, --help           output usage information
+  -I, --ignore <codes> ignore comma separated tldr-lint error codes (e.g. "TLDR001,TLDR0014")
+  -h, --help           display help for command
 ```
 
 ## Linter errors
