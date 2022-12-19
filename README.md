@@ -72,7 +72,7 @@ TLDR109     | File name should be lowercase
 [npm-image]: https://img.shields.io/npm/v/tldr-lint.svg
 
 [github-actions-url]: https://github.com/tldr-pages/tldr-lint/actions
-[github-actions-image]: https://img.shields.io/github/workflow/status/tldr-pages/tldr-lint/Tests/main.svg
+[github-actions-image]: https://img.shields.io/github/actions/workflow/status/tldr-pages/tldr-lint/test.yml?branch=main
 
 [dep-url]: https://david-dm.org/tldr-pages/tldr-lint
 [dep-image]: https://img.shields.io/david/tldr-pages/tldr-lint.svg
