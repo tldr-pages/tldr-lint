@@ -2,7 +2,7 @@
 
 [![npm version][npm-image]][npm-url]
 [![Build Status][github-actions-image]][github-actions-url]
-[![Gitter chat][gitter-image]][gitter-url]
+[![Matrix chat][matrix-image]][matrix-url]
 
 `tldr-lint` is a linting tool for validating [tldr](https://github.com/tldr-pages/tldr) pages.
 It can also format your pages for you!
@@ -80,5 +80,5 @@ TLDR109     | File name should be lowercase
 [dev-dep-url]: https://david-dm.org/tldr-pages/tldr-lint#info=devDependencies
 [dev-dep-image]: https://img.shields.io/david/dev/tldr-pages/tldr-lint.svg
 
-[gitter-url]: https://gitter.im/tldr-pages/tldr
-[gitter-image]: https://img.shields.io/gitter/room/tldr-pages/tldr.svg
+[matrix-url]: https://matrix.to/#/#tldr-pages:matrix.org
+[matrix-image]: https://img.shields.io/matrix/tldr-pages:matrix.org?label=chat+on+matrix
