@@ -31,7 +31,7 @@
     "name": "tldr-pages team"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=18"
   },
   "license": "MIT",
   "dependencies": {
