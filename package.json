@@ -6,7 +6,7 @@
   "scripts": {
     "jison": "jison tldr.yy tldr.l -o lib/tldr-parser.js",
     "lint": "eslint lib specs",
-    "prepare": "husky install",
+    "prepare": "husky",
     "test": "jest specs",
     "watch": "concurrently 'npm run watch:jison' 'npm run watch:specs'",
     "watch:jison": "onchange '*.l' '*.yy' -- npm run jison",
