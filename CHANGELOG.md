@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com).
 
 ## [v0.0.14 - 2024-04-20](https://github.com/tldr-pages/tldr-lint/compare/v0.0.13...v0.0.14)
 
-- Add rule `TLDR110` ([#306]https://github.com/tldr-pages/tldr-lint/pull/306))
+- Add rule `TLDR110` ([#306](https://github.com/tldr-pages/tldr-lint/pull/306))
 
 ## [v0.0.13 - 2021-10-12](https://github.com/tldr-pages/tldr-lint/compare/v0.0.12...v0.0.13)
 
