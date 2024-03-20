@@ -129,6 +129,9 @@ space [ \t]
     if (!exceptions.includes(yytext.replace(/ .*/,'')) && yytext.match(/^[a-z]/)) {
       yy.error(yylloc, 'TLDR003');
     }
+    if (yytext.match(/(note|NOTE): /)) {
+      yy.error(yylloc, 'TLDR020');
+    }
     var punctuation = this.matches[2];
     if (punctuation !== '.') {
       yy.error(yylloc, 'TLDR004');
