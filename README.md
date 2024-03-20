@@ -11,7 +11,7 @@ It can also format your pages for you!
 
 `tldr-lint` and its alias `tldrl` can be installed via `npm`:
 
-```
+```sh
 npm install --global tldr-lint
 ```
 
@@ -19,7 +19,7 @@ npm install --global tldr-lint
 
 It's really simple.
 
-```
+```txt
 Usage: tldr-lint [options] <file|dir>
 
 Options:
@@ -74,12 +74,6 @@ TLDR110     | Command example should not be empty
 
 [github-actions-url]: https://github.com/tldr-pages/tldr-lint/actions
 [github-actions-image]: https://img.shields.io/github/actions/workflow/status/tldr-pages/tldr-lint/test.yml?branch=main
-
-[dep-url]: https://david-dm.org/tldr-pages/tldr-lint
-[dep-image]: https://img.shields.io/david/tldr-pages/tldr-lint.svg
-
-[dev-dep-url]: https://david-dm.org/tldr-pages/tldr-lint#info=devDependencies
-[dev-dep-image]: https://img.shields.io/david/dev/tldr-pages/tldr-lint.svg
 
 [matrix-url]: https://matrix.to/#/#tldr-pages:matrix.org
 [matrix-image]: https://img.shields.io/matrix/tldr-pages:matrix.org?label=chat+on+matrix
