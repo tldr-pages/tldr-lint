@@ -4,7 +4,7 @@
 # to the repository secrets with the name NPM_TOKEN.
 # Once, the release has been published remove it from the repository secrets.
 
-name: Publish Package to NPM
+name: Publish package to NPM
 on:
   release:
     types: [published]
