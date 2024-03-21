@@ -1,11 +1,11 @@
 FROM node:21-alpine AS build
 
 WORKDIR /app
-RUN mkdir node_modules && chown -R node:node .
+RUN chown -R node:node .
 USER node
 
 ADD --chown=node:node package*.json ./
-RUN npm install
+RUN npm ci
 
 ADD --chown=node:node lib/ ./lib/
 ADD --chown=node:node specs/ ./specs/
