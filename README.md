@@ -35,13 +35,13 @@ Options:
 
 ### Usage via Docker
 
-We provide a Dockerfile for reproducibly building tldr-lint even without having node installed.
+We provide a Dockerfile for reproducibly building and testing `tldr-lint` even without having NodeJS installed.
 
-For building the Docker image, run this command inside the cloned tldr-lint repository:
+For building the Docker image, run this command inside the cloned `tldr-lint` repository:
 
 `docker build -t tldr-lint .`
 
-For running a tldr-lint container, you need to mount a volume containing the page(s) you want to lint to the container.
+For running a `tldr-lint` container, you need to mount a volume containing the page(s) you want to lint to the container.
 For checking a single page, run (replacing `{{/path/to/page.md}}` with the path to the page you want to check):
 
 `docker run --rm -v {{/path/to/page.md}}:/app/page.md tldr-lint page.md`
@@ -49,6 +49,9 @@ For checking a single page, run (replacing `{{/path/to/page.md}}` with the path 
 In order to run the container on a directory, mount this directory as follows:
 
 `docker run --rm -v {{/path/to/directory}}:/app/pages tldr-lint pages/`
+
+> [!NOTE]
+> For Windows users, specify the full path to the directory or page you want to check along with the `docker run` command above.
 
 ## Linter errors
 
