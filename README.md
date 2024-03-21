@@ -78,8 +78,8 @@ TLDR016     | Label for information link should be spelled exactly `More informa
 TLDR017     | Information link should be surrounded with angle brackets
 TLDR018     | Page should only include a single information link
 TLDR019     | Page should only include a maximum of 8 examples
+TLDR020     | Label for additional notes should be spelled exactly `Note:` (with a succeeding whitespace)
 TLDR021     | Command example should not begin or end in whitespace
-TLDR020     | Label for additional notes should be spelled exactly `Note: `
 TLDR101     | Command description probably not properly annotated
 TLDR102     | Example description probably not properly annotated
 TLDR103     | Command example is missing its closing backtick
