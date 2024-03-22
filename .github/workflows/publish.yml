@@ -1,17 +1,17 @@
-# This workflow automatically publishes the package to NPM when a new release is created.
+# This workflow automatically publishes the package to NPM and GHCR when a new release is created.
 # Before, creating a new release, make sure to update the package version in package.json
 # and add a Granular Access Token (with read and write packages scope)
 # to the repository secrets with the name NPM_TOKEN.
 # Once, the release has been published remove it from the repository secrets.
 
-name: Publish package to NPM
+name: Publish package
 on:
   release:
     types: [published]
   workflow_dispatch:
 
 jobs:
-  build:
+  publish-npm:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -26,3 +26,23 @@ jobs:
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  publish-ghcr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push
+        run: |
+         docker build . --tag ghcr.io/${{ github.actor }}/tldr-lint:latest
+         docker push ghcr.io/${{ github.actor }}/tldr-lint:latest 
