@@ -10,6 +10,10 @@ on:
     types: [published]
   workflow_dispatch:
 
+permissions:
+   contents: read
+   packages: write
+
 jobs:
   publish-npm:
     runs-on: ubuntu-latest
@@ -27,18 +31,18 @@ jobs:
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
+         
   publish-ghcr:
-    runs-on: ubuntu-latest
-    name: Docker
-    steps:
-      - uses: actions/checkout@v4
+     runs-on: ubuntu-latest
+     name: Docker
+     steps:
+         - uses: actions/checkout@v4
 
-      - name: Build image
-        run: |
-         docker build . --tag ghcr.io/${{ github.actor }}/tldr-lint:latest
+         - name: Build image
+           run: |
+              docker build . --tag ghcr.io/tldr-pages/tldr-lint:latest
 
-      - name: Push to GHCR
-        run: |
-         docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
-         docker image push ghcr.io/${{ github.actor }}/tldr-lint:latest
+         - name: Push to GHCR
+           run: |
+              docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
+              docker image push ghcr.io/tldr-pages/tldr-lint:latest
