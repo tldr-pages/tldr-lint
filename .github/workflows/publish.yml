@@ -4,7 +4,7 @@
 # to the repository secrets with the name NPM_TOKEN.
 # Once, the release has been published remove it from the repository secrets.
 
-name: Publish package
+name: Publish
 on:
   release:
     types: [published]
@@ -13,6 +13,7 @@ on:
 jobs:
   publish-npm:
     runs-on: ubuntu-latest
+    name: npm
     steps:
       - uses: actions/checkout@v4
 
@@ -29,6 +30,7 @@ jobs:
 
   publish-ghcr:
     runs-on: ubuntu-latest
+    name: Docker
     steps:
       - uses: actions/checkout@v4
 
@@ -45,4 +47,4 @@ jobs:
       - name: Build and push
         run: |
          docker build . --tag ghcr.io/${{ github.actor }}/tldr-lint:latest
-         docker push ghcr.io/${{ github.actor }}/tldr-lint:latest 
+         docker push ghcr.io/${{ github.actor }}/tldr-lint:latest
