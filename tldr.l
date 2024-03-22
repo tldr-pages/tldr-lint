@@ -129,6 +129,9 @@ space [ \t]
     if (!exceptions.includes(yytext.replace(/ .*/,'')) && yytext.match(/^[a-z]/)) {
       yy.error(yylloc, 'TLDR003');
     }
+    if (yytext.match(/(note|NOTE): /)) {
+      yy.error(yylloc, 'TLDR020');
+    }
     var punctuation = this.matches[2];
     if (punctuation !== '.') {
       yy.error(yylloc, 'TLDR004');
@@ -152,6 +155,9 @@ space [ \t]
     yytext = this.matches[1];
     if (!yytext.match(/^[\p{Lu}\[]/u)) yy.error(yylloc, 'TLDR015');
     if (this.matches[2] !== ':') yy.error(yylloc, 'TLDR005');
+    if (yytext.match(/(note|NOTE): /)) {
+      yy.error(yylloc, 'TLDR020');
+    }
     // Try to ensure that verbs at the beginning of the description are in the infinitive tense
     // 1. Any word at the start of a sentence that ends with "ing" and is 6 or more characters long (e.g. executing, writing) is likely a verb in the gerund
     // 2. Any word at the start of a sentence that doesn't end with "us", "ss", or "ys" (e.g. superfluous, success, always) is likely a verb in the present tense
