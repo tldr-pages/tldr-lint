@@ -47,4 +47,4 @@ jobs:
       - name: Build and push
         run: |
          docker build . --tag ghcr.io/${{ github.actor }}/tldr-lint:latest
-         docker push ghcr.io/${{ github.actor }}/tldr-lint:latest
+         docker image push ghcr.io/${{ github.actor }}/tldr-lint:latest
