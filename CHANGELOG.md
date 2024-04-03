@@ -4,7 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com).
 
-## [v0.0.14 - 2024-04-20](https://github.com/tldr-pages/tldr-lint/compare/v0.0.13...v0.0.14)
+## [v0.0.15 - 2024-04-03](https://github.com/tldr-pages/tldr-lint/compare/v0.0.14...v0.0.15)
+
+- Add rule `TLDR020` ([#308](https://github.com/tldr-pages/tldr-lint/pull/308))
+- Add rule `TLDR021` ([#310](https://github.com/tldr-pages/tldr-lint/pull/310))
+
+## [v0.0.14 - 2024-03-20](https://github.com/tldr-pages/tldr-lint/compare/v0.0.13...v0.0.14)
 
 - Add rule `TLDR110` ([#306](https://github.com/tldr-pages/tldr-lint/pull/306))
 
