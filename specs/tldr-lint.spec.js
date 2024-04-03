@@ -112,6 +112,12 @@ describe('TLDR conventions', function() {
     expect(errors.length).toBe(1);
   });
 
+  it('TLDR020\t' + linter.ERRORS.TLDR020, function() {
+    let errors = lintFile('pages/failing/020.md').errors;
+    expect(containsOnlyErrors(errors, 'TLDR020')).toBeTruthy();
+    expect(errors.length).toBe(3);
+  });
+
   it('TLDR021\t' + linter.ERRORS.TLDR021, function() {
     let errors = lintFile('pages/failing/021.md').errors;
     expect(containsOnlyErrors(errors, 'TLDR021')).toBeTruthy();
