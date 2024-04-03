@@ -184,9 +184,12 @@ space [ \t]
   }
 %}
 
-\`
+\`([ ]*)
 %{
   this.pushState('example_command');
+  if (this.matches[1].match(/ /)) {
+    yy.error(yylloc, 'TLDR021')
+  }
   return 'BACKTICK';
 %}
 
@@ -221,6 +224,9 @@ space [ \t]
     // Check if there are some trailing spaces
     if (this.matches[2].match(/ /)) {
       yy.error(yylloc, 'TLDR014');
+    }
+    if (this.matches[1].endsWith(' ') && !this.matches[1].endsWith('\\ ')) {
+      yy.error(yylloc, 'TLDR021');
     }
     // Don't swallow the trailing backtick just yet
     if (this.matches[2].match(/\`/)) this.unput('`');
