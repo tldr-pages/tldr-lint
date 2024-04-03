@@ -111,6 +111,12 @@ describe('TLDR conventions', function() {
     expect(containsOnlyErrors(errors, 'TLDR019')).toBeTruthy();
     expect(errors.length).toBe(1);
   });
+
+  it('TLDR020\t' + linter.ERRORS.TLDR020, function() {
+    let errors = lintFile('pages/failing/020.md').errors;
+    expect(containsOnlyErrors(errors, 'TLDR020')).toBeTruthy();
+    expect(errors.length).toBe(3);
+  });
 });
 
 describe('Common TLDR formatting errors', function() {
