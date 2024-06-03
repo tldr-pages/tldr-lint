@@ -1,5 +1,3 @@
-/* eslint-disable no-magic-numbers */
-
 const linter = require('../lib/tldr-lint.js');
 const { lintFile, containsErrors, containsOnlyErrors } = require('./tldr-lint-helper');
 
