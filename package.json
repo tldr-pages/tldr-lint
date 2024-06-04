@@ -41,8 +41,9 @@
   },
   "devDependencies": {
     "concurrently": "^8.0.1",
-    "eslint": "^8.0.0",
-    "eslint-plugin-jest": "^28.2.0",
+    "eslint": "^9.4.0",
+    "eslint-config-eslint": "^10.0.0",
+    "eslint-plugin-jest": "^28.5.0",
     "husky": "^9.0.6",
     "jest": "^29.1.2",
     "jison": "^0.4.18",
