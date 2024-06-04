@@ -38,7 +38,13 @@ jobs:
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v4
-
-        - name: Build image
-          run: |
-           docker build . --tag tldr-lint:latest
+        - name: Build the Docker image
+          uses: docker/build-push-action@v5
+          with:
+            context: .
+            file: Dockerfile
+            push: false
+            tags: tldr-lint:latest
+            cache-from: type=gha
+            cache-to: type=gha,mode=max
+            platforms: linux/amd64
