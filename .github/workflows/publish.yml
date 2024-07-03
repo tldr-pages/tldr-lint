@@ -16,6 +16,8 @@ jobs:
     name: npm
     permissions:
       contents: read
+      id-token: write
+
     steps:
       - uses: actions/checkout@v4
 
@@ -26,7 +28,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
 
       - run: npm ci
-      - run: npm publish
+      - run: npm publish --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -37,7 +39,7 @@ jobs:
       contents: read
       packages: write # Allow pushing images to GHCR
       attestations: write # To create and write attestations
-      id-token: write # Additional permissions for persistence of the attestations
+      id-token: write # Additional permissions for the persistence of the attestations
     
     env:
       BUILDX_NO_DEFAULT_ATTESTATIONS: 1
