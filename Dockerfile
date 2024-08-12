@@ -2,13 +2,13 @@
 FROM node:lts-alpine AS build
 
 # Image metadata
-LABEL org.opencontainers.image.title "tldr-lint Image"
-LABEL org.opencontainers.image.description "This image contains the latest version \
+LABEL org.opencontainers.image.title="tldr-lint Image"
+LABEL org.opencontainers.image.description="This image contains the latest version \
 of the tldr-lint package preinstalled."
-LABEL org.opencontainers.image.source "https://github.com/tldr-pages/tldr-lint"
-LABEL org.opencontainers.image.authors "tldr-pages maintainers and contributors"
-LABEL org.opencontainers.image.vendor "tldr.sh"
-LABEL org.opencontainers.image.licenses "MIT"
+LABEL org.opencontainers.image.source="https://github.com/tldr-pages/tldr-lint"
+LABEL org.opencontainers.image.authors="tldr-pages maintainers and contributors"
+LABEL org.opencontainers.image.vendor="tldr.sh"
+LABEL org.opencontainers.image.licenses="MIT"
 
 # Create app directory
 WORKDIR /app
