@@ -196,7 +196,7 @@ describe('Common TLDR formatting errors', function() {
 \`jar -xvf *.jar\``
     });
 
-    const errors = lintFile('pages/failing/111.md').errors;
+    const errors = lintFile('pages/failing/111<.md').errors;
     expect(containsOnlyErrors(errors, 'TLDR111')).toBeTruthy();
     expect(errors.length).toBe(1);
 
