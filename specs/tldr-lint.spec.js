@@ -1,3 +1,4 @@
+const mock = require('mock-fs');
 const linter = require('../lib/tldr-lint.js');
 const { lintFile, containsErrors, containsOnlyErrors } = require('./tldr-lint-helper');
 
@@ -185,9 +186,24 @@ describe('Common TLDR formatting errors', function() {
   });
 
   it('TLDR111\t' + linter.ERRORS.TLDR111, function () {
-    let errors = lintFile('pages/failing/111<.md').errors;
+    // Mocking the filesystem for just this test
+    mock({
+      'pages/failing/111<.md': `# jar
+
+> JAR (Java Archive) is a package file format.
+
+- Unzip file to the current directory:
+
+\`jar -xvf *.jar\``
+    });
+
+    const errors = linter.processFile('pages/failing/111<.md', false, false).errors;
+    
     expect(containsOnlyErrors(errors, 'TLDR111')).toBeTruthy();
     expect(errors.length).toBe(1);
+
+    // Restore filesystem after the test
+    mock.restore();
   });
 });
 
