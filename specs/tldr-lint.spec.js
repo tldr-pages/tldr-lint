@@ -185,7 +185,7 @@ describe('Common TLDR formatting errors', function() {
   });
 
   it('TLDR111\t' + linter.ERRORS.TLDR111, function () {
-    let errors = lintFile('pages/failing/111.md').errors;
+    let errors = lintFile('pages/failing/111<.md').errors;
     expect(containsOnlyErrors(errors, 'TLDR111')).toBeTruthy();
     expect(errors.length).toBe(1);
   });
