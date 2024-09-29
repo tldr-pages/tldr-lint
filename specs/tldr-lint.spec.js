@@ -1,4 +1,5 @@
 const mock = require('mock-fs');
+const fs = require('fs');
 const linter = require('../lib/tldr-lint.js');
 const { lintFile, containsErrors, containsOnlyErrors } = require('./tldr-lint-helper');
 
@@ -196,6 +197,7 @@ describe('Common TLDR formatting errors', function() {
 \`jar -xvf *.jar\``
     });
 
+    console.log(fs.existsSync('pages/failing/111<.md'));
     const errors = lintFile('pages/failing/111<.md').errors;
     expect(containsOnlyErrors(errors, 'TLDR111')).toBeTruthy();
     expect(errors.length).toBe(1);
