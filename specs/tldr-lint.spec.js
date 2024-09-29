@@ -198,6 +198,8 @@ describe('Common TLDR formatting errors', function() {
       expect(errors.length).toBe(1);
 
       basenameSpy.mockRestore();
+    });
+  });
 });
 
 describe('TLDR pages that are simply correct', function() {
