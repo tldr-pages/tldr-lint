@@ -186,11 +186,12 @@ describe('Common TLDR formatting errors', function() {
   });
 
   it('TLDR111\t' + linter.ERRORS.TLDR111, function() {
+    const originalBasename = path.basename;
     const basenameSpy = jest.spyOn(path, 'basename').mockImplementation((filePath) => {
       if (filePath === 'pages/failing/111.md') {
-        return '111<';  // Return the illegal character filename
+        return '111<';
       }
-      return path.basename(filePath);  // Default behavior for other files
+      return originalBasename(filePath);
     });
 
     const errors = lintFile('pages/failing/111.md').errors;
