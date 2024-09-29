@@ -186,7 +186,6 @@ describe('Common TLDR formatting errors', function() {
   });
 
   it('TLDR111\t' + linter.ERRORS.TLDR111, function () {
-    // Mocking the filesystem for just this test
     mock({
       'pages/failing/111<.md': `# jar
 
@@ -197,12 +196,10 @@ describe('Common TLDR formatting errors', function() {
 \`jar -xvf *.jar\``
     });
 
-    const errors = linter.processFile('pages/failing/111<.md', false, false).errors;
-    
+    const errors = lintFile('pages/failing/111.md').errors;
     expect(containsOnlyErrors(errors, 'TLDR111')).toBeTruthy();
     expect(errors.length).toBe(1);
 
-    // Restore filesystem after the test
     mock.restore();
   });
 });
