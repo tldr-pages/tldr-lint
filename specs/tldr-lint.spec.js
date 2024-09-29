@@ -185,17 +185,19 @@ describe('Common TLDR formatting errors', function() {
     expect(errors.length).toBe(1);
   });
 
-  it('TLDR111\t' + linter.ERRORS.TLDR111, function() {
-    const basenameSpy = jest.spyOn(path, 'basename').mockImplementation((filePath) => {
-      return '111<';
-    });
+  const illegalCharacters = linter.ILLEGAL_WINDOWS_CHARACTERS.source.match(/\\u[0-9a-fA-F]{4}|[^\\]/g);
+  illegalCharacters.forEach((char) => {
+    it('TLDR111\t' + linter.ERRORS.TLDR111 + '\t - ${char}', function() {
+      const basenameSpy = jest.spyOn(path, 'basename').mockImplementation((filePath) => {
+        return `111${char}`;
+      });
 
-    const errors = lintFile('pages/failing/111.md').errors;
-    expect(containsOnlyErrors(errors, 'TLDR111')).toBeTruthy();
-    expect(errors.length).toBe(1);
+      const errors = lintFile(`pages/failing/111${char}.md`).errors;
 
-    basenameSpy.mockRestore();
-  });
+      expect(containsOnlyErrors(errors, 'TLDR111')).toBeTruthy();
+      expect(errors.length).toBe(1);
+
+      basenameSpy.mockRestore();
 });
 
 describe('TLDR pages that are simply correct', function() {
