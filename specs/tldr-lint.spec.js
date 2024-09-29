@@ -1,5 +1,4 @@
-const mock = require('mock-fs');
-const fs = require('fs');
+const path = require('path');
 const linter = require('../lib/tldr-lint.js');
 const { lintFile, containsErrors, containsOnlyErrors } = require('./tldr-lint-helper');
 
@@ -186,23 +185,19 @@ describe('Common TLDR formatting errors', function() {
     expect(errors.length).toBe(1);
   });
 
-  it('TLDR111\t' + linter.ERRORS.TLDR111, function () {
-    mock({
-      'pages/failing/111<.md': `# jar
-
-> JAR (Java Archive) is a package file format.
-
-- Unzip file to the current directory:
-
-\`jar -xvf *.jar\``
+  it('TLDR111\t' + linter.ERRORS.TLDR111, function() {
+    const basenameSpy = jest.spyOn(path, 'basename').mockImplementation((filePath) => {
+      if (filePath === 'pages/failing/111.md') {
+        return '111<';  // Return the illegal character filename
+      }
+      return path.basename(filePath);  // Default behavior for other files
     });
 
-    console.log(fs.existsSync('pages/failing/111<.md'));
-    const errors = lintFile('pages/failing/111<.md').errors;
+    const errors = lintFile('pages/failing/111.md').errors;
     expect(containsOnlyErrors(errors, 'TLDR111')).toBeTruthy();
     expect(errors.length).toBe(1);
 
-    mock.restore();
+    basenameSpy.mockRestore();
   });
 });
 
