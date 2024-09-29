@@ -192,7 +192,7 @@ describe('Common TLDR formatting errors', function() {
         return `111${char}`;
       });
 
-      const errors = lintFile(`pages/failing/111${char}.md`).errors;
+      const errors = lintFile(`pages/failing/111.md`).errors;
 
       expect(containsOnlyErrors(errors, 'TLDR111')).toBeTruthy();
       expect(errors.length).toBe(1);
