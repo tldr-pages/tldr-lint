@@ -1,3 +1,4 @@
+const path = require('path');
 const linter = require('../lib/tldr-lint.js');
 const { lintFile, containsErrors, containsOnlyErrors } = require('./tldr-lint-helper');
 
@@ -182,6 +183,21 @@ describe('Common TLDR formatting errors', function() {
     let errors = lintFile('pages/failing/110.md').errors;
     expect(containsOnlyErrors(errors, 'TLDR110')).toBeTruthy();
     expect(errors.length).toBe(1);
+  });
+
+  const invalidCharacters = ['<', '>', ':', '"', '/', '\\', '|', '?', '*'];
+  invalidCharacters.forEach((char) => {
+    it('TLDR111\t' + linter.ERRORS.TLDR111 + '\t - ${char}', function() {
+      const basenameSpy = jest.spyOn(path, 'basename').mockImplementation((filePath) => {
+        return `111${char}`;
+      });
+
+      let errors = lintFile(`pages/failing/111.md`).errors;
+      expect(containsOnlyErrors(errors, 'TLDR111')).toBeTruthy();
+      expect(errors.length).toBe(1);
+
+      basenameSpy.mockRestore();
+    });
   });
 });
 

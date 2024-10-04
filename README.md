@@ -90,6 +90,7 @@ TLDR107     | File name should end with `.md` extension
 TLDR108     | File name should not contain whitespace
 TLDR109     | File name should be lowercase
 TLDR110     | Command example should not be empty
+TLDR111     | File name should not contain any Windows-forbidden character
 
 [npm-url]: https://www.npmjs.com/package/tldr-lint
 [npm-image]: https://img.shields.io/npm/v/tldr-lint.svg

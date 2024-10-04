@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com).
 
+## Unreleased
+
+- Add rule `TLDR111` ([#353](https://github.com/tldr-pages/tldr-lint/pull/353))
+
 ## [v0.0.15 - 2024-04-03](https://github.com/tldr-pages/tldr-lint/compare/v0.0.14...v0.0.15)
 
 - Add rule `TLDR020` ([#308](https://github.com/tldr-pages/tldr-lint/pull/308))
