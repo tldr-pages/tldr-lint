@@ -85,7 +85,7 @@ jobs:
         provenance: false
 
     - name: Attest pushed image
-      uses: actions/attest-build-provenance@v1
+      uses: actions/attest-build-provenance@v2
       id: attest
       with:
         subject-name: ${{ env.IMAGE_URL }}
