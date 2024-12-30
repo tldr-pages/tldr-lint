@@ -37,7 +37,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "commander": "^12.1.0"
+    "commander": "^13.0.0"
   },
   "devDependencies": {
     "concurrently": "^9.1.0",
