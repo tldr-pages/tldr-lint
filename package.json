@@ -2,7 +2,10 @@
   "name": "tldr-lint",
   "version": "0.0.16",
   "description": "A linting tool to validate tldr pages",
-  "repository": "tldr-pages/tldr-lint",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tldr-pages/tldr-lint.git"
+  },
   "scripts": {
     "jison": "jison tldr.yy tldr.l -o lib/tldr-parser.js",
     "lint": "eslint lib specs",
