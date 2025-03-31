@@ -99,7 +99,7 @@ space [ \t]
 %{
   if (this.topState() === "title") {
     yytext = this.matches[1];
-    if (this.matches[1].match(/([^\w+\[. -])|(\.$)/)) yy.error(yylloc, 'TLDR013');
+    if (this.matches[1].match(/([^\w+\[\]}. -])|(\.$)/)) yy.error(yylloc, 'TLDR013');
     this.checkTrailingWhitespace(this.matches[2], yylloc);
     this.checkNewline(this.matches[3], yylloc);
     this.popState();
