@@ -222,6 +222,11 @@ describe('TLDR pages that are simply correct', function() {
     expect(errors.length).toBe(0);
   });
 
+  it('Page filename and title includes ! symbol', function() {
+    let errors = lintFile('pages/passing/!.md').errors;
+    expect(errors.length).toBe(0);
+  })
+
   it('Certain words are always written in lower case', function() {
     let errors = lintFile('pages/passing/lower-case.md').errors;
     expect(errors.length).toBe(0);

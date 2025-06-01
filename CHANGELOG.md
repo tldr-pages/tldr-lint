@@ -1,14 +1,21 @@
+<!-- markdownlint-configure-file {"MD024": { "siblings_only": true } } -->
 # Changelog
 
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com).
 
+## [v0.0.18](https://github.com/tldr-pages/tldr-lint/compare/v0.0.17...v0.0.18)
+
+### Added
+
+- Add `!` as allowed characters in page titles ([#378](https://github.com/tldr-pages/tldr-lint/pull/378))
+
 ## [v0.0.17 - 2025-03-31](https://github.com/tldr-pages/tldr-lint/compare/v0.0.16...v0.0.17)
 
 ### Added
 
-- Add `]` and `}` as allowed characters in page titles (https://github.com/tldr-pages/tldr-lint/pull/378)
+- Add `]` and `}` as allowed characters in page titles ([#378](https://github.com/tldr-pages/tldr-lint/pull/378))
 
 ## [v0.0.16 - 2024-10-04](https://github.com/tldr-pages/tldr-lint/compare/v0.0.15...v0.0.16)
 
