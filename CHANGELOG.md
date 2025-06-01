@@ -9,7 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com).
 
 ### Added
 
-- Add `!` as allowed characters in page titles ([#378](https://github.com/tldr-pages/tldr-lint/pull/378))
+- Add `!` as allowed characters in page titles ([#386](https://github.com/tldr-pages/tldr-lint/pull/386))
 
 ## [v0.0.17 - 2025-03-31](https://github.com/tldr-pages/tldr-lint/compare/v0.0.16...v0.0.17)
 
