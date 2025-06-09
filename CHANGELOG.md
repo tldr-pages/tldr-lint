@@ -11,6 +11,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com).
 
 - Add `{`, `%`, `,`, `^`, `~`, `$`, `~`, and `.` as allowed characters in file names and page titles ([#389](https://github.com/tldr-pages/tldr-lint/pull/389))
 
+### Changed
+
+- Switched to Node.js 22 ([#393](https://github.com/tldr-pages/tldr-lint/pull/393))
+
 ## [v0.0.18 - 2025-06-02](https://github.com/tldr-pages/tldr-lint/compare/v0.0.17...v0.0.18)
 
 ### Added
