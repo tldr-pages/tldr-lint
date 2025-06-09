@@ -187,12 +187,12 @@ describe('Common TLDR formatting errors', function() {
 
   const invalidCharacters = ['<', '>', ':', '"', '/', '\\', '|', '?', '*'];
   invalidCharacters.forEach((char) => {
-    it('TLDR111\t' + linter.ERRORS.TLDR111 + '\t - ${char}', function() {
+    it('TLDR111\t' + linter.ERRORS.TLDR111 + `: '${char}'`, function() {
       const basenameSpy = jest.spyOn(path, 'basename').mockImplementation((filePath) => {
         return `111${char}`;
       });
 
-      let errors = lintFile(`pages/failing/111.md`).errors;
+      let errors = lintFile('pages/failing/111.md').errors;
       expect(containsOnlyErrors(errors, 'TLDR111')).toBeTruthy();
       expect(errors.length).toBe(1);
 
@@ -217,15 +217,13 @@ describe('TLDR pages that are simply correct', function() {
     expect(errors.length).toBe(0);
   });
 
-  it('Page filename and title includes + symbol', function() {
-    let errors = lintFile('pages/passing/title++.md').errors;
-    expect(errors.length).toBe(0);
+  const validCharacters = [',', '!', '.', '[', '[[', ']', ']]', '{', '}', '%', '^', '+', '~', '$']
+  validCharacters.forEach((char) => {
+    it(`Page filename and title includes '${char}' symbol`, function() {
+      let errors = lintFile(`pages/passing/${char}.md`).errors;
+      expect(errors.length).toBe(0);  
+    });
   });
-
-  it('Page filename and title includes ! symbol', function() {
-    let errors = lintFile('pages/passing/!.md').errors;
-    expect(errors.length).toBe(0);
-  })
 
   it('Certain words are always written in lower case', function() {
     let errors = lintFile('pages/passing/lower-case.md').errors;
