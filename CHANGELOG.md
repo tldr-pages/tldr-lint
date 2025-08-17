@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com).
 
+## [v0.0.20](https://github.com/tldr-pages/tldr-lint/compare/v0.0.19...v0.0.20)
+
+### Added
+
+- Add `:`, `>`, `<`, `|`, and `?` as allowed characters in page titles ([#408](https://github.com/tldr-pages/tldr-lint/pull/408))
+
 ## [v0.0.19 - 2025-06-10](https://github.com/tldr-pages/tldr-lint/compare/v0.0.18...v0.0.19)
 
 ### Added

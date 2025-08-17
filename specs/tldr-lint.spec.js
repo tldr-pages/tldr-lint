@@ -225,6 +225,20 @@ describe('TLDR pages that are simply correct', function() {
     });
   });
 
+  const validTitleCharacters = [
+    [':', 'colon'],
+    ['>', 'greater-than'],
+    ['<', 'less-than'],
+    ['|', 'vertical-bar'],
+    ['?', 'question-mark']
+  ];
+  validTitleCharacters.forEach(([symbol, name]) => {
+    it(`Page title includes '${symbol}' symbol`, function() {
+      let errors = lintFile(`pages/passing/${name}.md`).errors;
+      expect(errors.length).toBe(0);
+    });
+  });
+
   it('Certain words are always written in lower case', function() {
     let errors = lintFile('pages/passing/lower-case.md').errors;
     expect(errors.length).toBe(0);

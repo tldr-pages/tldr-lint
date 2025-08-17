@@ -100,7 +100,7 @@ space [ \t]
   if (this.topState() === "title") {
     yytext = this.matches[1];
     if (
-      /[^\w+\[\]{}!%,^~$. \-]/.test(yytext) || 
+      /[^\w+\[\]{}!%,^~$:><|?. -]/.test(yytext) || 
       (yytext.endsWith('.') && yytext !== '.' && yytext !== ' .')
     ) {
       yy.error(yylloc, 'TLDR013');
