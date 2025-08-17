@@ -11,6 +11,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com).
 
 - Add `:`, `>`, `<`, `|`, and `?` as allowed characters in page titles ([#414](https://github.com/tldr-pages/tldr-lint/pull/414))
 
+### Changed
+
+- Make TLDR013 more descriptive since we also allow specific characters ([#414](https://github.com/tldr-pages/tldr-lint/pull/414))
+
 ## [v0.0.19 - 2025-06-10](https://github.com/tldr-pages/tldr-lint/compare/v0.0.18...v0.0.19)
 
 ### Added
