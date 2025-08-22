@@ -24,8 +24,10 @@
     "pages",
     "lint",
     "validate",
-    "format"
+    "format",
+    "linter"
   ],
+  "homepage": "https://tldr.sh",
   "author": {
     "name": "Ruben Vereecken",
     "email": "rubenvereecken@gmail.com"
