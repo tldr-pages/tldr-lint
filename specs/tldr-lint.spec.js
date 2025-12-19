@@ -252,3 +252,37 @@ describe('ignore errors', function() {
     expect(errors.length).toBe(2);
   });
 });
+
+describe('format function', function() {
+  it('should preserve command text before placeholders', function() {
+    const page = `# test
+
+> Test description.
+> More information: <https://example.com>.
+
+- Example:
+
+\`grep {{pattern}} {{file}}\`
+`;
+    const parsed = linter.parse(page);
+    const formatted = linter.format(parsed);
+    expect(formatted).toContain('`grep {{pattern}} {{file}}`');
+    expect(formatted).not.toContain('undefined');
+  });
+
+  it('should preserve command text without placeholders', function() {
+    const page = `# test
+
+> Test description.
+> More information: <https://example.com>.
+
+- Example:
+
+\`echo hello\`
+`;
+    const parsed = linter.parse(page);
+    const formatted = linter.format(parsed);
+    expect(formatted).toContain('`echo hello`');
+    expect(formatted).not.toContain('undefined');
+  });
+});
