@@ -5,7 +5,6 @@
 %token COMMAND_TOKEN COMMAND_TEXT
 %token TEXT
 %token ANGLE_BRACKETED_URL INFORMATION_LINK END_INFORMATION_LINK_URL END_INFORMATION_LINK
-%token SEE_ALSO END_SEE_ALSO
 
 %start page
 
@@ -22,7 +21,6 @@ title     : HASH TITLE  -> yy.setTitle($TITLE)
 
 info  : description
   | description information_link
-  | description see_also
   ;
 
 description   : GREATER_THAN DESCRIPTION_LINE -> yy.addDescription($DESCRIPTION_LINE)
@@ -36,10 +34,6 @@ information_link  : GREATER_THAN INFORMATION_LINK ANGLE_BRACKETED_URL END_INFORM
                   | information_link GREATER_THAN INFORMATION_LINK ANGLE_BRACKETED_URL END_INFORMATION_LINK_URL
                     -> yy.error(@$, 'TLDR018')
                   ;
-
-see_also : GREATER_THAN SEE_ALSO END_SEE_ALSO
-          -> yy.addDescription($SEE_ALSO + $END_SEE_ALSO.trim())
-          ;
 
 examples  : %empty
           | examples example
@@ -74,8 +68,8 @@ example_command     : BACKTICK BACKTICK -> yy.error(@$, 'TLDR110')
                     /* | BACKTICK example_command_inner          -> yy.error(@$, 'TLDR103') || $example_command_inner */
                     ;
 
-example_command_inner : COMMAND_TEXT -> $COMMAND_TEXT
-                      | COMMAND_TOKEN -> $COMMAND_TOKEN
+example_command_inner : COMMAND_TEXT -> [yy.createCommandText($COMMAND_TEXT)]
+                      | COMMAND_TOKEN -> [yy.createToken($COMMAND_TOKEN)]
                       | example_command_inner COMMAND_TEXT
                         -> [].concat($example_command_inner, yy.createCommandText($COMMAND_TEXT))
                       | example_command_inner COMMAND_TOKEN
