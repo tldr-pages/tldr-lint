@@ -74,12 +74,13 @@ TLDR012     | Page should contain no tabs
 TLDR013     | Title should be alphanumeric with dashes, underscores or spaces
 TLDR014     | Page should contain no trailing whitespace
 TLDR015     | Example descriptions should start with a capital letter
-TLDR016     | Label for information link should be spelled exactly `More information: `
+TLDR016     | Label for information link should be spelled exactly `More information:`
 TLDR017     | Information link should be surrounded with angle brackets
 TLDR018     | Page should only include a single information link
 TLDR019     | Page should only include a maximum of 8 examples
 TLDR020     | Label for additional notes should be spelled exactly `Note:` (with a succeeding whitespace)
 TLDR021     | Command example should not begin or end in whitespace
+TLDR022     | Label for see also mention should be spelled exactly `See also:`
 TLDR101     | Command description probably not properly annotated
 TLDR102     | Example description probably not properly annotated
 TLDR103     | Command example is missing its closing backtick
@@ -91,6 +92,7 @@ TLDR108     | File name should not contain whitespace
 TLDR109     | File name should be lowercase
 TLDR110     | Command example should not be empty
 TLDR111     | File name should not contain any Windows-forbidden character
+TLDR112     | Translated lines must not be identical to English page lines (only lines starting with `>` and `-` are checked)
 
 [npm-url]: https://www.npmjs.com/package/tldr-lint
 [npm-image]: https://img.shields.io/npm/v/tldr-lint.svg

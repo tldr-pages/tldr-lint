@@ -82,6 +82,20 @@ space [ \t]
   return 'INFORMATION_LINK';
 %}
 
+([Ss]ee\s+[Aa]lso\:?\s*)
+%{
+  if (this.topState() !== 'description') {
+    this.reject();
+    return;
+  }
+  if (this.matches[1] !== 'See also: ') {
+    yy.error(yylloc, 'TLDR022');
+  }
+  this.popState();
+  this.pushState('see_also');
+  return 'SEE_ALSO';
+%}
+
 (\<https?\:\/\/[^\s\>]*\>)
 %{
   if (this.topState() !== 'information_link') {
@@ -120,6 +134,11 @@ space [ \t]
     this.checkNewline(this.matches[3], yylloc);
     this.popState();
     return 'END_INFORMATION_LINK';
+  } else if (this.topState() === 'see_also') {
+    this.checkTrailingWhitespace(this.matches[2], yylloc);
+    this.checkNewline(this.matches[3], yylloc);
+    this.popState();
+    return 'END_SEE_ALSO';
   } else {
     this.reject();
   }
