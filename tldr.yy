@@ -20,8 +20,8 @@ title     : HASH TITLE  -> yy.setTitle($TITLE)
           ;
 
 info  : description
-  | description information_link
-  ;
+      | description information_link
+      ;
 
 description   : GREATER_THAN DESCRIPTION_LINE -> yy.addDescription($DESCRIPTION_LINE)
               | description GREATER_THAN DESCRIPTION_LINE -> yy.addDescription($DESCRIPTION_LINE)
