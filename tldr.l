@@ -145,7 +145,7 @@ space [ \t]
       console.warn(`Description ends in \'${punctuation}\'. Consider writing your sentence on one line.`);
     }
     // Check for incorrect stdout/stdin/stderr/regex usage
-    var termMatch = yytext.match(/(?:^|[^`-])(stdout|stdin|stderr|regex)(?:[^`]|$)/i);
+    var termMatch = yytext.match(/(?:^|[^`-\w])(stdout|stdin|stderr|regex)(?=[^`\w]|$)/i);
     if (termMatch) {
       // Skip if the term is inside angle brackets (URL)
       var beforeTerm = yytext.substring(0, termMatch.index + termMatch[0].indexOf(termMatch[1]));
@@ -186,7 +186,7 @@ space [ \t]
       yy.error(yylloc, 'TLDR104');
     }
     // Check for incorrect stdout/stdin/stderr/regex usage
-    var termMatch = yytext.match(/(?:^|[^`-])(stdout|stdin|stderr|regex)(?:[^`]|$)/i);
+    var termMatch = yytext.match(/(?:^|[^`-\w])(stdout|stdin|stderr|regex)(?=[^`\w]|$)/i);
     if (termMatch) {
       // Skip if the term is inside angle brackets (URL)
       var beforeTerm = yytext.substring(0, termMatch.index + termMatch[0].indexOf(termMatch[1]));
