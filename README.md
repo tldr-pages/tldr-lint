@@ -91,6 +91,7 @@ TLDR108     | File name should not contain whitespace
 TLDR109     | File name should be lowercase
 TLDR110     | Command example should not be empty
 TLDR111     | File name should not contain any Windows-forbidden character
+TLDR113     | Terms `stdin`, `stdout`, `stderr`, and `regex` should be lowercase and wrapped in backticks
 
 [npm-url]: https://www.npmjs.com/package/tldr-lint
 [npm-image]: https://img.shields.io/npm/v/tldr-lint.svg

@@ -144,6 +144,22 @@ space [ \t]
     if (punctuation.match(/[,;]/)) {
       console.warn(`Description ends in \'${punctuation}\'. Consider writing your sentence on one line.`);
     }
+    // Check for incorrect stdout/stdin/stderr/regex usage
+    var termMatch = yytext.match(/(?:^|[^`-])(stdout|stdin|stderr|regex)(?:[^`]|$)/i);
+    if (termMatch) {
+      // Skip if the term is inside angle brackets (URL)
+      var beforeTerm = yytext.substring(0, termMatch.index + termMatch[0].indexOf(termMatch[1]));
+      var afterTerm = yytext.substring(termMatch.index + termMatch[0].indexOf(termMatch[1]) + termMatch[1].length);
+      var insideUrl = (beforeTerm.lastIndexOf('<') > beforeTerm.lastIndexOf('>')) && (afterTerm.indexOf('>') < afterTerm.indexOf('<') || afterTerm.indexOf('<') === -1);
+      if (!insideUrl) {
+        var term = termMatch[1].toLowerCase();
+        yy.errors.push({
+          locinfo: yylloc,
+          code: 'TLDR113',
+          description: 'Term `' + term + '` should be lowercase and wrapped in backticks'
+        });
+      }
+    }
     this.checkTrailingWhitespace(this.matches[3], yylloc);
     this.checkNewline(this.matches[4], yylloc);
     return 'DESCRIPTION_LINE';
@@ -168,6 +184,22 @@ space [ \t]
     // 2. Any word at the start of a sentence that doesn't end with "us", "ss", or "ys" (e.g. superfluous, success, always) is likely a verb in the present tense
     if (yytext.match(/(^[A-Za-z]{3,}ing )|(^[A-Za-z]+[^usy]s )/)) {
       yy.error(yylloc, 'TLDR104');
+    }
+    // Check for incorrect stdout/stdin/stderr/regex usage
+    var termMatch = yytext.match(/(?:^|[^`-])(stdout|stdin|stderr|regex)(?:[^`]|$)/i);
+    if (termMatch) {
+      // Skip if the term is inside angle brackets (URL)
+      var beforeTerm = yytext.substring(0, termMatch.index + termMatch[0].indexOf(termMatch[1]));
+      var afterTerm = yytext.substring(termMatch.index + termMatch[0].indexOf(termMatch[1]) + termMatch[1].length);
+      var insideUrl = (beforeTerm.lastIndexOf('<') > beforeTerm.lastIndexOf('>')) && (afterTerm.indexOf('>') < afterTerm.indexOf('<') || afterTerm.indexOf('<') === -1);
+      if (!insideUrl) {
+        var term = termMatch[1].toLowerCase();
+        yy.errors.push({
+          locinfo: yylloc,
+          code: 'TLDR113',
+          description: 'Term `' + term + '` should be lowercase and wrapped in backticks'
+        });
+      }
     }
     // Check if any sneaky spaces have been caught
     this.checkTrailingWhitespace(this.matches[3], yylloc);
