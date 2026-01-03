@@ -145,18 +145,24 @@ space [ \t]
       console.warn(`Description ends in \'${punctuation}\'. Consider writing your sentence on one line.`);
     }
     // Check for incorrect stdout/stdin/stderr/regex usage
-    var termMatch = yytext.match(/(?:^|[^`-\w])(stdout|stdin|stderr|regex)(?=[^`\w]|$)/i);
+    var termMatch = yytext.match(/(?:^|[^`-\w])(stdout|stdin|stderr|regex|regular\s+expression|standard\s+(?:in|input|out|output|err|error))(?=[^`\w]|$)/i);
     if (termMatch) {
       // Skip if the term is inside angle brackets (URL)
       var beforeTerm = yytext.substring(0, termMatch.index + termMatch[0].indexOf(termMatch[1]));
       var afterTerm = yytext.substring(termMatch.index + termMatch[0].indexOf(termMatch[1]) + termMatch[1].length);
       var insideUrl = (beforeTerm.lastIndexOf('<') > beforeTerm.lastIndexOf('>')) && (afterTerm.indexOf('>') < afterTerm.indexOf('<') || afterTerm.indexOf('<') === -1);
       if (!insideUrl) {
-        var term = termMatch[1].toLowerCase();
+        var foundTerm = termMatch[1].toLowerCase();
+        var term = foundTerm;
+        // Map longer forms to shorter forms
+        if (foundTerm === 'regular expression') term = 'regex';
+        else if (foundTerm.match(/^standard (in|input)$/)) term = 'stdin';
+        else if (foundTerm.match(/^standard (out|output)$/)) term = 'stdout';
+        else if (foundTerm.match(/^standard (err|error)$/)) term = 'stderr';
         yy.errors.push({
           locinfo: yylloc,
           code: 'TLDR113',
-          description: 'Term `' + term + '` should be lowercase and wrapped in backticks'
+          description: 'Term `' + termMatch[1] + '` should be lowercase and wrapped in backticks (`' + term + '`)'
         });
       }
     }
@@ -186,18 +192,24 @@ space [ \t]
       yy.error(yylloc, 'TLDR104');
     }
     // Check for incorrect stdout/stdin/stderr/regex usage
-    var termMatch = yytext.match(/(?:^|[^`-\w])(stdout|stdin|stderr|regex)(?=[^`\w]|$)/i);
+    var termMatch = yytext.match(/(?:^|[^`-\w])(stdout|stdin|stderr|regex|regular\s+expression|standard\s+(?:in|input|out|output|err|error))(?=[^`\w]|$)/i);
     if (termMatch) {
       // Skip if the term is inside angle brackets (URL)
       var beforeTerm = yytext.substring(0, termMatch.index + termMatch[0].indexOf(termMatch[1]));
       var afterTerm = yytext.substring(termMatch.index + termMatch[0].indexOf(termMatch[1]) + termMatch[1].length);
       var insideUrl = (beforeTerm.lastIndexOf('<') > beforeTerm.lastIndexOf('>')) && (afterTerm.indexOf('>') < afterTerm.indexOf('<') || afterTerm.indexOf('<') === -1);
       if (!insideUrl) {
-        var term = termMatch[1].toLowerCase();
+        var foundTerm = termMatch[1].toLowerCase();
+        var term = foundTerm;
+        // Map longer forms to shorter forms
+        if (foundTerm === 'regular expression') term = 'regex';
+        else if (foundTerm.match(/^standard (in|input)$/)) term = 'stdin';
+        else if (foundTerm.match(/^standard (out|output)$/)) term = 'stdout';
+        else if (foundTerm.match(/^standard (err|error)$/)) term = 'stderr';
         yy.errors.push({
           locinfo: yylloc,
           code: 'TLDR113',
-          description: 'Term `' + term + '` should be lowercase and wrapped in backticks'
+          description: 'Term `' + termMatch[1] + '` should be lowercase and wrapped in backticks (`' + term + '`)'
         });
       }
     }
