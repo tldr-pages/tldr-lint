@@ -92,7 +92,7 @@ TLDR109     | File name should be lowercase
 TLDR110     | Command example should not be empty
 TLDR111     | File name should not contain any Windows-forbidden character
 TLDR112     | Terms `stdin`, `stdout`, `stderr`, and `regex` (including longer forms like "standard input", "regular expression") should be lowercase and wrapped in backticks
-TLDR113     | Translated lines must not be identical to English page lines (only lines starting with `>` and `-` are checked)
+TLDR113     | Translated line must not be identical to English line (only lines starting with `>` and `-` are checked)
 
 [npm-url]: https://www.npmjs.com/package/tldr-lint
 [npm-image]: https://img.shields.io/npm/v/tldr-lint.svg
