@@ -201,8 +201,14 @@ describe('Common TLDR formatting errors', function() {
   });
 
   it('TLDR112\t' + linter.ERRORS.TLDR112, function() {
-    let errors = lintFile('pages.es/failing/112.md').errors;
+    let errors = lintFile('pages/failing/112.md').errors;
     expect(containsOnlyErrors(errors, 'TLDR112')).toBeTruthy();
+    expect(errors.length).toBe(7);
+  });
+
+  it('TLDR113\t' + linter.ERRORS.TLDR113, function() {
+    let errors = lintFile('pages.es/failing/113.md').errors;
+    expect(containsOnlyErrors(errors, 'TLDR113')).toBeTruthy();
     expect(errors.length).toBe(2);
   });
 });
@@ -247,6 +253,16 @@ describe('TLDR pages that are simply correct', function() {
 
   it('Certain words are always written in lower case', function() {
     let errors = lintFile('pages/passing/lower-case.md').errors;
+    expect(errors.length).toBe(0);
+  });
+
+  it('stdin, stdout, stderr, and regex are correctly formatted', function() {
+    let errors = lintFile('pages/passing/standardized-terms.md').errors;
+    expect(errors.length).toBe(0);
+  });
+
+  it('Spanish file is fully translated', function() {
+    let errors = lintFile('pages.es/passing/cat.md').errors;
     expect(errors.length).toBe(0);
   });
 });
