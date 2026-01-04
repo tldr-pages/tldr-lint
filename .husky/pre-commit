@@ -1,1 +1,9 @@
+#!/bin/bash
 npm run lint
+
+# Regenerate parser and check if it's up to date
+npm run jison
+if git status --porcelain=v1 2>/dev/null | grep -q lib/tldr-parser.js; then
+  echo "Error: lib/tldr-parser.js is out of date. Please run 'npm run jison' and commit the changes."
+  exit 1
+fi
