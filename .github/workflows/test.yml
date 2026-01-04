@@ -37,6 +37,12 @@ jobs:
 
     - run: npm ci
     - run: npm run lint
+    - run: npm run jison
+    - name: Check unchanged parser
+      shell: bash
+      run: |
+        git status
+        exit $(git status --porcelain=v1 2>/dev/null | grep -c lib/tldr-parser.js)
     - run: npm run test
       env:
         FORCE_COLOR: true
