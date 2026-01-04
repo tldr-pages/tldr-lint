@@ -200,9 +200,9 @@ describe('Common TLDR formatting errors', function() {
     });
   });
 
-  it('TLDR113\t' + linter.ERRORS.TLDR113, function() {
-    let errors = lintFile('pages/failing/113.md').errors;
-    expect(containsOnlyErrors(errors, 'TLDR113')).toBeTruthy();
+  it('TLDR112\t' + linter.ERRORS.TLDR112, function() {
+    let errors = lintFile('pages/failing/112.md').errors;
+    expect(containsOnlyErrors(errors, 'TLDR112')).toBeTruthy();
     expect(errors.length).toBe(7);
   });
 });

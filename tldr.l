@@ -161,7 +161,7 @@ space [ \t]
         else if (foundTerm.match(/^standard (err|error)$/)) term = 'stderr';
         yy.errors.push({
           locinfo: yylloc,
-          code: 'TLDR113',
+          code: 'TLDR112',
           description: 'Term `' + termMatch[1] + '` should be lowercase and wrapped in backticks (`' + term + '`)'
         });
       }
@@ -208,7 +208,7 @@ space [ \t]
         else if (foundTerm.match(/^standard (err|error)$/)) term = 'stderr';
         yy.errors.push({
           locinfo: yylloc,
-          code: 'TLDR113',
+          code: 'TLDR112',
           description: 'Term `' + termMatch[1] + '` should be lowercase and wrapped in backticks (`' + term + '`)'
         });
       }
