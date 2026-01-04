@@ -74,7 +74,7 @@ TLDR012     | Page should contain no tabs
 TLDR013     | Title should be alphanumeric with dashes, underscores or spaces
 TLDR014     | Page should contain no trailing whitespace
 TLDR015     | Example descriptions should start with a capital letter
-TLDR016     | Label for information link should be spelled exactly `More information: `
+TLDR016     | Label for information link should be spelled exactly `More information:`
 TLDR017     | Information link should be surrounded with angle brackets
 TLDR018     | Page should only include a single information link
 TLDR019     | Page should only include a maximum of 8 examples
@@ -92,6 +92,7 @@ TLDR109     | File name should be lowercase
 TLDR110     | Command example should not be empty
 TLDR111     | File name should not contain any Windows-forbidden character
 TLDR112     | Terms `stdin`, `stdout`, `stderr`, and `regex` (including longer forms like "standard input", "regular expression") should be lowercase and wrapped in backticks
+TLDR113     | Translated line must not be identical to English line (only lines starting with `>` and `-` are checked)
 
 [npm-url]: https://www.npmjs.com/package/tldr-lint
 [npm-image]: https://img.shields.io/npm/v/tldr-lint.svg
