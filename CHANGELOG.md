@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com).
 
+## [v0.0.21 - 2026-01-04](https://github.com/tldr-pages/tldr-lint/compare/v0.0.20...v0.0.21)
+
+### Added
+
+- Add check TLDR112 to verify terms `stdin`, `stdout`, `stderr`, and `regex` (including longer forms like "standard input", "regular expression") are lowercase and wrapped in backticks ([#458](https://github.com/tldr-pages/tldr-lint/pull/458))
+
 ## [v0.0.20 - 2025-08-18](https://github.com/tldr-pages/tldr-lint/compare/v0.0.19...v0.0.20)
 
 ### Added
