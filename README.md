@@ -71,10 +71,10 @@ TLDR009     | Page should contain a newline at end of file
 TLDR010     | Only Unix-style line endings allowed
 TLDR011     | Page never contains more than a single empty line
 TLDR012     | Page should contain no tabs
-TLDR013     | Title should be alphanumeric with dashes, underscores or spaces
+TLDR013     | Title should be alphanumeric with dashes, underscores, spaces or allowed characters
 TLDR014     | Page should contain no trailing whitespace
 TLDR015     | Example descriptions should start with a capital letter
-TLDR016     | Label for information link should be spelled exactly `More information: `
+TLDR016     | Label for information link should be spelled exactly `More information:` (with a succeeding whitespace)
 TLDR017     | Information link should be surrounded with angle brackets
 TLDR018     | Page should only include a single information link
 TLDR019     | Page should only include a maximum of 8 examples

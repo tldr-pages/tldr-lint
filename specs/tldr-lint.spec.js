@@ -223,7 +223,7 @@ describe('TLDR pages that are simply correct', function() {
     expect(errors.length).toBe(0);
   });
 
-  const validCharacters = [',', '!', '.', '[', '[[', ']', ']]', '{', '}', '%', '^', '+', '~', '$']
+  const validCharacters = [',', '!', '.', '[', '[[', ']', ']]', '((', '{', '}', '%', '^', '+', '~', '$']
   validCharacters.forEach((char) => {
     it(`Page filename and title includes '${char}' symbol`, function() {
       let errors = lintFile(`pages/passing/${char}.md`).errors;

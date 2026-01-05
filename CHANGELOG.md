@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com).
 
+## [Unreleased]
+
+### Added
+
+- Add `(`, `)`, `((`, and `))` as allowed characters in page titles ([#XXX](https://github.com/tldr-pages/tldr-lint/pull/XXX))
+
 ## [v0.0.21 - 2026-01-04](https://github.com/tldr-pages/tldr-lint/compare/v0.0.20...v0.0.21)
 
 ### Added
