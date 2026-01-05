@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com).
 
-## [Unreleased]
+## [v0.0.22 - 2026-01-05](https://github.com/tldr-pages/tldr-lint/compare/v0.0.21...v0.0.22)
 
 ### Added
 
