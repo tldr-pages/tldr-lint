@@ -45,7 +45,7 @@
     "commander": "^14.0.0"
   },
   "devDependencies": {
-    "concurrently": "^9.1.2",
+    "concurrently": "^10.0.1",
     "eslint": "^10.1.0",
     "eslint-config-eslint": "^14.0.0",
     "eslint-plugin-jest": "^29.0.1",
