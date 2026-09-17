@@ -166,6 +166,16 @@ space [ \t]
         });
       }
     }
+    // Check for hyperlinks that aren't enclosed in angle brackets
+    var urlMatch = yytext.match(/https?:\/\/[^\s<>]+/);
+    if (urlMatch) {
+      var beforeUrl = yytext.substring(0, urlMatch.index);
+      var afterUrl = yytext.substring(urlMatch.index + urlMatch[0].length);
+      var urlBracketed = beforeUrl.endsWith('<') && afterUrl.startsWith('>');
+      if (!urlBracketed) {
+        yy.error(yylloc, 'TLDR113');
+      }
+    }
     this.checkTrailingWhitespace(this.matches[3], yylloc);
     this.checkNewline(this.matches[4], yylloc);
     return 'DESCRIPTION_LINE';
@@ -211,6 +221,16 @@ space [ \t]
           code: 'TLDR112',
           description: 'Term `' + termMatch[1] + '` should be lowercase and wrapped in backticks (`' + term + '`)'
         });
+      }
+    }
+    // Check for hyperlinks that aren't enclosed in angle brackets
+    var urlMatch = yytext.match(/https?:\/\/[^\s<>]+/);
+    if (urlMatch) {
+      var beforeUrl = yytext.substring(0, urlMatch.index);
+      var afterUrl = yytext.substring(urlMatch.index + urlMatch[0].length);
+      var urlBracketed = beforeUrl.endsWith('<') && afterUrl.startsWith('>');
+      if (!urlBracketed) {
+        yy.error(yylloc, 'TLDR113');
       }
     }
     // Check if any sneaky spaces have been caught
