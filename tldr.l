@@ -188,7 +188,9 @@ space [ \t]
     // Try to ensure that verbs at the beginning of the description are in the infinitive tense
     // 1. Any word at the start of a sentence that ends with "ing" and is 6 or more characters long (e.g. executing, writing) is likely a verb in the gerund
     // 2. Any word at the start of a sentence that doesn't end with "us", "ss", or "ys" (e.g. superfluous, success, always) is likely a verb in the present tense
-    if (yytext.match(/(^[A-Za-z]{3,}ing )|(^[A-Za-z]+[^usy]s )/)) {
+    var infinitiveExceptions = ['antialias', 'alias', 'bias', 'canvas', 'focus', 'gas'];
+    var firstWord = yytext.replace(/^\W*/, '').split(/\s+/)[0].toLowerCase();
+    if (yytext.match(/(^[A-Za-z]{3,}ing )|(^[A-Za-z]+[^usy]s )/) && !infinitiveExceptions.includes(firstWord)) {
       yy.error(yylloc, 'TLDR104');
     }
     // Check for incorrect stdout/stdin/stderr/regex usage

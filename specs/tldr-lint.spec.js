@@ -254,6 +254,11 @@ describe('TLDR pages that are simply correct', function() {
     let errors = lintFile('pages/passing/standardized-terms.md').errors;
     expect(errors.length).toBe(0);
   });
+
+  it('Example descriptions with infinitives that happen to end in s', function() {
+    let errors = lintFile('pages/passing/infinitive-exceptions.md').errors;
+    expect(errors.length).toBe(0);
+  });
 });
 
 describe('ignore errors', function() {
