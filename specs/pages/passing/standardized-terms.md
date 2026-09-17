@@ -23,3 +23,7 @@
 - Test if a given string conforms the specified `regex`:
 
 `[[ ${{variable}} =~ {{pattern}} ]]`
+
+- List files that match a given `glob` pattern:
+
+`ls {{*.txt}}`
