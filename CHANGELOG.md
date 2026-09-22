@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com).
 
+## [v0.0.23 - 2026-09-22](https://github.com/tldr-pages/tldr-lint/compare/v0.0.22...v0.0.23)
+
+### Added
+
+- Add TLDR113 to check all lines in translated page are translated ([#457](https://github.com/tldr-pages/tldr-lint/pull/457))
+
+### Changed
+
+- Extend TLDR112 to cover `glob`/glob pattern per style guide ([#539](https://github.com/tldr-pages/tldr-lint/pull/539))
+
 ## [v0.0.22 - 2026-01-05](https://github.com/tldr-pages/tldr-lint/compare/v0.0.21...v0.0.22)
 
 ### Added
