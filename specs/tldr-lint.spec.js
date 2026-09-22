@@ -203,7 +203,7 @@ describe('Common TLDR formatting errors', function() {
   it('TLDR112\t' + linter.ERRORS.TLDR112, function() {
     let errors = lintFile('pages/failing/112.md').errors;
     expect(containsOnlyErrors(errors, 'TLDR112')).toBeTruthy();
-    expect(errors.length).toBe(7);
+    expect(errors.length).toBe(8);
   });
 
   it('TLDR113\t' + linter.ERRORS.TLDR113, function() {
